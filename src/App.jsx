@@ -56,6 +56,21 @@ const portfolioData = {
         "Orchestrated 10+ automated ETL workflows using Kubernetes CronJobs, leveraging Datadog monitoring for 99.9% uptime for business-critical data synchronization.",
         "Developed and maintained a robust CI/CD pipeline using GitHub Actions for a containerized legacy process."
       ]
+    },
+    {
+      id: "exp-2",
+      role: "Data Subteam Member",
+      company: "Georgia Tech Solar Racing",
+      location: "Atlanta, GA",
+      date: "2024 - Present",
+      type: "work",
+      images: ["/solar1.png", "/unnamed.png"],
+      bullets: [
+        "Integrated real-time environmental data into the team's energy forecasting models by utilizing the Solcast API to query solar irradiance (GHI) and temperature metrics at 30-minute intervals across 1,500+ mile routes.",
+        "Engineered an automated geospatial data pipeline using Python that converted KML route files into structured DataFrames, identifying critical race segments based on custom distance and 3.5% elevation thresholds.",
+        "Streamlined live race operations during the Formula Sun Grand Prix by configuring real-time Grafana dashboards to monitor incoming telemetry data, immediately alerting the chase car team to electric trips and State of Charge (SOC) anomalies.",
+        "Supported dynamic route planning and mock race strategy by analyzing track similarities, local speed limits, and elevation changes to evaluate potential test routes."
+      ]
     }
   ],
   education: [
@@ -261,6 +276,13 @@ export default function App() {
                         </li>
                       ))}
                     </ul>
+                    {job.images && job.images.length > 0 && (
+                      <div className="mt-4 grid grid-cols-2 gap-3">
+                        {job.images.map((img, idx) => (
+                          <img key={idx} src={img} alt={`${job.company} photo ${idx + 1}`} className="rounded-lg border border-slate-700 w-full h-auto object-cover" />
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
