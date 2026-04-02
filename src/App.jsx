@@ -82,6 +82,20 @@ const portfolioData = {
   ],
   projects: [
     {
+      id: "proj-0",
+      title: "EquipLog",
+      date: "Mar 2026",
+      tags: ["Mobile-First", "QR Code", "UX Design", "Customer Discovery"],
+      link: "https://equiplog.netlify.app/",
+      bullets: [
+        "Directed product strategy by conducting customer discovery interviews with shop floor mechanics, identifying critical workflow bottlenecks to inform the MVP's focus on mobile accessibility.",
+        "Streamlined equipment record retrieval, eliminating manual data entry for mechanics on the floor, by designing a mobile-first application featuring integrated QR code scanning and large-text search capabilities.",
+        "Accelerated the safety risk and issue reporting process to under 30 seconds per instance—requiring fewer than 3 screen taps—by developing a highly accessible, glove-friendly user interface with quick-toggle statuses.",
+        "Improved diagnostic clarity and cross-team communication for maintenance technicians by implementing a photo-attachment feature within the issue-logging pipeline, providing immediate visual context for future repairs.",
+        "Delivered measurable real-world impact during initial testing by reducing average issue logging time by over 50%, validating the application's ability to drive operational efficiency and safety compliance."
+      ]
+    },
+    {
       id: "proj-1",
       title: "Robotics Digital Twin Application",
       date: "Feb 2025",
