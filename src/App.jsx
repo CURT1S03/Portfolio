@@ -149,7 +149,7 @@ const portfolioData = {
       title: "JavaFX Music Player",
       date: "Aug 2023",
       tags: ["Java", "Eclipse", "JavaFX"],
-      link: "https://github.com/Cwcao",
+      link: "https://sites.google.com/view/secondproject/our-app?authuser=0",
       bullets: [
         "Utilized JavaFX to craft a dynamic and visually appealing user interface for music playback.",
         "Implemented comprehensive music playback functionalities (play, pause, stop, track selection).",
