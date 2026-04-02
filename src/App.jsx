@@ -137,7 +137,8 @@ const portfolioData = {
       title: "Maze Solver With Image Detection",
       date: "Nov 2023",
       tags: ["Python", "OpenCV", "Algorithms"],
-      link: "https://github.com/Cwcao",
+      link: "",
+      image: "/Maze.png",
       bullets: [
         "Developed a console program capable of analyzing black-and-white maze images and computing optimal navigation solutions.",
         "Employed OpenCV to accurately transform maze images into RGB coordinates within a 2D-NumPy array.",
@@ -306,6 +307,9 @@ export default function App() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {projects.map((project) => (
               <div key={project.id} className="bg-slate-800/40 border border-slate-800 hover:border-slate-700 rounded-xl p-6 transition-all group flex flex-col h-full">
+                {project.image && (
+                  <img src={project.image} alt={project.title} className="w-full h-48 object-cover rounded-lg mb-4" />
+                )}
                 <div className="flex justify-between items-start mb-4">
                   <div className="flex flex-col gap-1">
                     <h4 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">{project.title}</h4>
