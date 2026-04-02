@@ -206,18 +206,6 @@ const portfolioData = {
       ]
     },
     {
-      id: "proj-3",
-      title: "Bottling Plant Digital Twin",
-      date: "2024 - 2025",
-      tags: ["NVIDIA Omniverse", "USD", "Simulation"],
-      link: "",
-      bullets: [
-        "Led the design and development of a digital twin for a bottling plant using Nvidia Omniverse, enabling real-time visualization.",
-        "Implemented physics-based simulations to replicate conveyor belt dynamics and bottleneck issues.",
-        "Collaborated with cross-functional teams using Universal Scene Description (USD) for interoperability."
-      ]
-    },
-    {
       id: "proj-4",
       title: "Maze Solver With Image Detection",
       date: "Nov 2023",
