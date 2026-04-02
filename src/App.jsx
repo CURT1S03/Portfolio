@@ -139,6 +139,7 @@ const portfolioData = {
       date: "Nov 2025",
       tags: ["Unity", "C#", "Game Design", "Git LFS", "3D"],
       link: "https://github.com/CURT1S03/Ascensio",
+      video: "https://www.youtube.com/embed/-l6dTUsGWe0",
       bullets: [
         "Designed and implemented core gameplay mechanics—including a coin collection system, interactive environmental elements (bouncy leaves, elevator clouds), and a safe-point respawn system—by writing modular C# scripts in Unity.",
         "Optimized player navigation and spatial awareness by developing a responsive third-person camera anchor system and integrating foundational character movement controls.",
@@ -436,8 +437,24 @@ export default function App() {
               <div key={project.id}
                 className="card-glow relative border border-gold-300/10 bg-gold-300/[0.02] p-6 flex flex-col h-full group">
 
+                {/* YouTube video embed */}
+                {project.video && (
+                  <div className="mb-5 -mx-6 -mt-6 overflow-hidden">
+                    <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                      <iframe
+                        src={project.video}
+                        title={`${project.title} demo`}
+                        className="absolute inset-0 w-full h-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </div>
+                    <div className="h-px bg-gradient-to-r from-gold-300/20 via-gold-300/40 to-gold-300/20" />
+                  </div>
+                )}
+
                 {/* Single image */}
-                {project.image && (
+                {project.image && !project.video && (
                   <div className="mb-5 -mx-6 -mt-6 overflow-hidden">
                     <img src={project.image} alt={project.title}
                       className="w-full h-48 object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
