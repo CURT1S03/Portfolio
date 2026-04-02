@@ -62,12 +62,11 @@ const portfolioData = {
       role: "Data Subteam Member",
       company: "Georgia Tech Solar Racing",
       location: "Atlanta, GA",
-      date: "2024 - Present",
+      date: "2025 - Present",
       type: "work",
       images: ["/solar1.png", "/unnamed.png"],
       bullets: [
         "Integrated real-time environmental data into the team's energy forecasting models by utilizing the Solcast API to query solar irradiance (GHI) and temperature metrics at 30-minute intervals across 1,500+ mile routes.",
-        "Engineered an automated geospatial data pipeline using Python that converted KML route files into structured DataFrames, identifying critical race segments based on custom distance and 3.5% elevation thresholds.",
         "Streamlined live race operations during the Formula Sun Grand Prix by configuring real-time Grafana dashboards to monitor incoming telemetry data, immediately alerting the chase car team to electric trips and State of Charge (SOC) anomalies.",
         "Supported dynamic route planning and mock race strategy by analyzing track similarities, local speed limits, and elevation changes to evaluate potential test routes."
       ]
