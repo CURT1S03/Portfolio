@@ -134,6 +134,18 @@ const portfolioData = {
   ],
   projects: [
     {
+      id: "proj-ascensio",
+      title: "Ascensio (3D Platformer Game)",
+      date: "Nov 2025",
+      tags: ["Unity", "C#", "Game Design", "Git LFS", "3D"],
+      link: "https://github.com/CURT1S03/Ascensio",
+      bullets: [
+        "Designed and implemented core gameplay mechanics—including a coin collection system, interactive environmental elements (bouncy leaves, elevator clouds), and a safe-point respawn system—by writing modular C# scripts in Unity.",
+        "Optimized player navigation and spatial awareness by developing a responsive third-person camera anchor system and integrating foundational character movement controls.",
+        "Spearheaded a complete redesign of the main playable level by seamlessly integrating complex 3D assets (villages, beanstalks, bridges) and managing large binary files via Git LFS to maintain optimal project performance."
+      ]
+    },
+    {
       id: "proj-0",
       title: "EquipLog",
       date: "Mar 2026",
