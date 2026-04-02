@@ -99,7 +99,7 @@ const portfolioData = {
       role: "Data Subteam Member",
       company: "Georgia Tech Solar Racing",
       location: "Atlanta, GA",
-      date: "2024 - Present",
+      date: "2025 - Present",
       type: "work",
       images: ["/solar1.png", "/unnamed.png"],
       bullets: [
@@ -134,6 +134,20 @@ const portfolioData = {
   ],
   projects: [
     {
+      id: "proj-0",
+      title: "EquipLog",
+      date: "Mar 2026",
+      tags: ["Mobile-First", "QR Code", "UX Design", "Customer Discovery"],
+      link: "https://equiplog.netlify.app/",
+      bullets: [
+        "Directed product strategy by conducting customer discovery interviews with shop floor mechanics, identifying critical workflow bottlenecks to inform the MVP's focus on mobile accessibility.",
+        "Streamlined equipment record retrieval, eliminating manual data entry for mechanics on the floor, by designing a mobile-first application featuring integrated QR code scanning and large-text search capabilities.",
+        "Accelerated the safety risk and issue reporting process to under 30 seconds per instance\u2014requiring fewer than 3 screen taps\u2014by developing a highly accessible, glove-friendly user interface with quick-toggle statuses.",
+        "Improved diagnostic clarity and cross-team communication for maintenance technicians by implementing a photo-attachment feature within the issue-logging pipeline, providing immediate visual context for future repairs.",
+        "Delivered measurable real-world impact during initial testing by reducing average issue logging time by over 50%, validating the application's ability to drive operational efficiency and safety compliance."
+      ]
+    },
+    {
       id: "proj-ascensio",
       title: "Ascensio (3D Platformer Game)",
       date: "Nov 2025",
@@ -147,17 +161,16 @@ const portfolioData = {
       ]
     },
     {
-      id: "proj-0",
-      title: "EquipLog",
-      date: "Mar 2026",
-      tags: ["Mobile-First", "QR Code", "UX Design", "Customer Discovery"],
-      link: "https://equiplog.netlify.app/",
+      id: "proj-2",
+      title: "Solar Racing Strategy Simulator",
+      date: "2025 - Present",
+      tags: ["InfluxDB", "BoTorch/GPyTorch", "Flask", "React", "Docker"],
+      link: "",
+      images: ["/simoutput1.png", "/simoutput2.png", "/simoutput3.png"],
       bullets: [
-        "Directed product strategy by conducting customer discovery interviews with shop floor mechanics, identifying critical workflow bottlenecks to inform the MVP's focus on mobile accessibility.",
-        "Streamlined equipment record retrieval, eliminating manual data entry for mechanics on the floor, by designing a mobile-first application featuring integrated QR code scanning and large-text search capabilities.",
-        "Accelerated the safety risk and issue reporting process to under 30 seconds per instance\u2014requiring fewer than 3 screen taps\u2014by developing a highly accessible, glove-friendly user interface with quick-toggle statuses.",
-        "Improved diagnostic clarity and cross-team communication for maintenance technicians by implementing a photo-attachment feature within the issue-logging pipeline, providing immediate visual context for future repairs.",
-        "Delivered measurable real-world impact during initial testing by reducing average issue logging time by over 50%, validating the application's ability to drive operational efficiency and safety compliance."
+        "Improved race-day lap prediction accuracy from 29% to 78% by building a pace-based telemetry pipeline.",
+        "Optimized speed profiles across a 24-dimensional continuous search space maximizing FSGP competition score using Bayesian optimization.",
+        "Delivered a full-stack race operations platform serving 11,000+ lines of code across a Flask REST API, React dashboard, and Dockerized deployment."
       ]
     },
     {
@@ -184,19 +197,6 @@ const portfolioData = {
         "Developed RESTful API endpoints with FastAPI that interfaced with a core ROS 2 pub/sub system.",
         "Engineered a data pipeline where ROS 2 nodes published real-time performance metrics persisted to an Oracle Database.",
         "Created endpoints to enable Streamlit dashboards to visualize historical experiment data."
-      ]
-    },
-    {
-      id: "proj-2",
-      title: "Solar Racing Strategy Simulator",
-      date: "2025 - Present",
-      tags: ["InfluxDB", "BoTorch/GPyTorch", "Flask", "React", "Docker"],
-      link: "",
-      images: ["/simoutput1.png", "/simoutput2.png", "/simoutput3.png"],
-      bullets: [
-        "Improved race-day lap prediction accuracy from 29% to 78% by building a pace-based telemetry pipeline.",
-        "Optimized speed profiles across a 24-dimensional continuous search space maximizing FSGP competition score using Bayesian optimization.",
-        "Delivered a full-stack race operations platform serving 11,000+ lines of code across a Flask REST API, React dashboard, and Dockerized deployment."
       ]
     },
     {
