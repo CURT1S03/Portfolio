@@ -126,7 +126,7 @@ const portfolioData = {
       title: "Robotics Digital Twin Application",
       date: "Feb 2025",
       tags: ["NVIDIA Omniverse", "Streamlit", "FastAPI", "ROS 2", "Oracle DB"],
-      link: "https://github.com/Cwcao",
+      link: "",
       bullets: [
         "Architected a full-stack digital twin framework using NVIDIA Omniverse to validate robotic planning algorithms.",
         "Developed RESTful API endpoints with FastAPI that interfaced with a core ROS 2 pub/sub system.",
@@ -139,7 +139,8 @@ const portfolioData = {
       title: "Solar Racing Strategy Simulator",
       date: "2025 - Present",
       tags: ["InfluxDB", "BoTorch/GPyTorch", "Flask", "React", "Docker"],
-      link: "https://github.com/Cwcao",
+      link: "",
+      images: ["/simoutput1.png", "/simoutput2.png", "/simoutput3.png"],
       bullets: [
         "Improved race-day lap prediction accuracy from 29% to 78% by building a pace-based telemetry pipeline.",
         "Optimized speed profiles across a 24-dimensional continuous search space maximizing FSGP competition score using Bayesian optimization.",
@@ -342,6 +343,13 @@ export default function App() {
               <div key={project.id} className="bg-slate-800/40 border border-slate-800 hover:border-slate-700 rounded-xl p-6 transition-all group flex flex-col h-full">
                 {project.image && (
                   <img src={project.image} alt={project.title} className="w-full h-48 object-cover rounded-lg mb-4" />
+                )}
+                {project.images && project.images.length > 0 && (
+                  <div className="grid grid-cols-3 gap-2 mb-4">
+                    {project.images.map((img, idx) => (
+                      <img key={idx} src={img} alt={`${project.title} ${idx + 1}`} className="w-full h-32 object-cover rounded-lg border border-slate-700" />
+                    ))}
+                  </div>
                 )}
                 <div className="flex justify-between items-start mb-4">
                   <div className="flex flex-col gap-1">
