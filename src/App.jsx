@@ -1,13 +1,17 @@
 import React from 'react';
-import { 
-  Mail, 
-  MapPin, 
-  Briefcase, 
-  GraduationCap, 
-  Calendar, 
-  ChevronRight, 
+import {
+  Mail,
+  MapPin,
+  Briefcase,
+  GraduationCap,
+  Calendar,
+  ChevronRight,
   Code,
-  ExternalLink
+  ExternalLink,
+  ArrowUpRight,
+  Sparkles,
+  Zap,
+  Award,
 } from 'lucide-react';
 
 const Github = ({ size = 24 }) => (
@@ -22,9 +26,42 @@ const Linkedin = ({ size = 24 }) => (
   </svg>
 );
 
-// ==========================================
-// PORTFOLIO DATA (EDIT THIS TO UPDATE YOUR SITE)
-// ==========================================
+/* ============================================
+   Decorative Components
+   ============================================ */
+
+const DiamondDivider = () => (
+  <div className="flex items-center gap-3 my-8">
+    <div className="flex-1 h-px bg-gradient-to-r from-transparent to-gold-300/40" />
+    <div className="w-2 h-2 rotate-45 border border-gold-300/60" />
+    <div className="w-1.5 h-1.5 rotate-45 bg-gold-300/60" />
+    <div className="w-2 h-2 rotate-45 border border-gold-300/60" />
+    <div className="flex-1 h-px bg-gradient-to-l from-transparent to-gold-300/40" />
+  </div>
+);
+
+const SectionHeading = ({ icon: Icon, iconColor, title, subtitle }) => (
+  <div className="text-center space-y-3 mb-12">
+    <div className="flex items-center justify-center gap-3 mb-2">
+      <div className="h-px w-12 bg-gradient-to-r from-transparent to-gold-300/50" />
+      <div className={`p-2.5 rounded-lg border border-gold-300/20 ${iconColor}`}>
+        <Icon size={22} />
+      </div>
+      <div className="h-px w-12 bg-gradient-to-l from-transparent to-gold-300/50" />
+    </div>
+    <h3 className="font-heading text-3xl md:text-4xl font-bold text-gold-100 tracking-wide">
+      {title}
+    </h3>
+    {subtitle && (
+      <p className="text-sm font-accent text-gold-300/70 tracking-[0.2em] uppercase">{subtitle}</p>
+    )}
+  </div>
+);
+
+/* ============================================
+   Portfolio Data
+   ============================================ */
+
 const portfolioData = {
   personal: {
     name: "Curtis Cao",
@@ -62,11 +99,12 @@ const portfolioData = {
       role: "Data Subteam Member",
       company: "Georgia Tech Solar Racing",
       location: "Atlanta, GA",
-      date: "2025 - Present",
+      date: "2024 - Present",
       type: "work",
       images: ["/solar1.png", "/unnamed.png"],
       bullets: [
         "Integrated real-time environmental data into the team's energy forecasting models by utilizing the Solcast API to query solar irradiance (GHI) and temperature metrics at 30-minute intervals across 1,500+ mile routes.",
+        "Engineered an automated geospatial data pipeline using Python that converted KML route files into structured DataFrames, identifying critical race segments based on custom distance and 3.5% elevation thresholds.",
         "Streamlined live race operations during the Formula Sun Grand Prix by configuring real-time Grafana dashboards to monitor incoming telemetry data, immediately alerting the chase car team to electric trips and State of Charge (SOC) anomalies.",
         "Supported dynamic route planning and mock race strategy by analyzing track similarities, local speed limits, and elevation changes to evaluate potential test routes."
       ]
@@ -104,7 +142,7 @@ const portfolioData = {
       bullets: [
         "Directed product strategy by conducting customer discovery interviews with shop floor mechanics, identifying critical workflow bottlenecks to inform the MVP's focus on mobile accessibility.",
         "Streamlined equipment record retrieval, eliminating manual data entry for mechanics on the floor, by designing a mobile-first application featuring integrated QR code scanning and large-text search capabilities.",
-        "Accelerated the safety risk and issue reporting process to under 30 seconds per instance—requiring fewer than 3 screen taps—by developing a highly accessible, glove-friendly user interface with quick-toggle statuses.",
+        "Accelerated the safety risk and issue reporting process to under 30 seconds per instance\u2014requiring fewer than 3 screen taps\u2014by developing a highly accessible, glove-friendly user interface with quick-toggle statuses.",
         "Improved diagnostic clarity and cross-team communication for maintenance technicians by implementing a photo-attachment feature within the issue-logging pipeline, providing immediate visual context for future repairs.",
         "Delivered measurable real-world impact during initial testing by reducing average issue logging time by over 50%, validating the application's ability to drive operational efficiency and safety compliance."
       ]
@@ -127,6 +165,7 @@ const portfolioData = {
       date: "Feb 2025",
       tags: ["NVIDIA Omniverse", "Streamlit", "FastAPI", "ROS 2", "Oracle DB"],
       link: "",
+      image: "/RoboticsDigitwin.png",
       bullets: [
         "Architected a full-stack digital twin framework using NVIDIA Omniverse to validate robotic planning algorithms.",
         "Developed RESTful API endpoints with FastAPI that interfaced with a core ROS 2 pub/sub system.",
@@ -187,196 +226,259 @@ const portfolioData = {
   ]
 };
 
-// ==========================================
-// MAIN APPLICATION COMPONENT
-// ==========================================
+/* ============================================
+   Main App
+   ============================================ */
+
 export default function App() {
   const projects = portfolioData.projects;
+  const d = portfolioData;
 
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-200 font-sans selection:bg-blue-500/30">
-      
-      {/* HEADER & HERO */}
-      <header className="border-b border-slate-800 bg-slate-900/80 backdrop-blur-md sticky top-0 z-50">
+    <div className="min-h-screen bg-navy-950 text-gold-100/80 font-body selection:bg-gold-300/20 chevron-bg">
+
+      {/* ─── HEADER ─── */}
+      <header className="border-b border-gold-300/10 bg-navy-950/90 backdrop-blur-lg sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-          <h1 className="text-xl font-bold tracking-tight text-white">
-            {portfolioData.personal.name}<span className="text-blue-500">.</span>
-          </h1>
-          <nav className="hidden md:flex gap-6 text-sm font-medium text-slate-400">
-            <a href="#experience" className="hover:text-white transition-colors">Experience</a>
-            <a href="#education" className="hover:text-white transition-colors">Education</a>
-            <a href="#projects" className="hover:text-white transition-colors">Projects</a>
-            <a href="#skills" className="hover:text-white transition-colors">Skills</a>
+          <a href="#" className="group flex items-center gap-1.5">
+            <span className="font-heading text-xl font-bold tracking-wide text-gold-100">
+              {d.personal.name}
+            </span>
+            <span className="text-gold-300 text-2xl leading-none group-hover:text-gold-200 transition-colors">.</span>
+          </a>
+          <nav className="hidden md:flex items-center gap-1">
+            {["Experience", "Education", "Projects", "Skills"].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="px-4 py-2 text-sm font-medium tracking-wide text-gold-300/60 hover:text-gold-200 transition-all duration-300 relative group"
+              >
+                {item}
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-px bg-gold-300/50 group-hover:w-2/3 transition-all duration-300" />
+              </a>
+            ))}
           </nav>
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-6 py-12 md:py-20 space-y-24">
-        
-        {/* HERO SECTION */}
-        <section className="space-y-6">
-          <div className="space-y-2">
-            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white">
-              Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">{portfolioData.personal.name}</span>
-            </h2>
-            <p className="text-xl md:text-2xl text-slate-400 max-w-3xl">
-              {portfolioData.personal.title}
-            </p>
-          </div>
-          
-          <p className="text-lg leading-relaxed text-slate-300 max-w-3xl">
-            {portfolioData.personal.about}
-          </p>
+      <main className="max-w-6xl mx-auto px-6">
 
-          <div className="flex flex-wrap gap-4 pt-4">
-            <a href={portfolioData.personal.github} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-lg text-white transition-all text-sm font-medium">
-              <Github size={18} /> GitHub
-            </a>
-            <a href={portfolioData.personal.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-4 py-2 bg-blue-600/10 hover:bg-blue-600/20 text-blue-400 rounded-lg transition-all text-sm font-medium">
-              <Linkedin size={18} /> LinkedIn
-            </a>
-            <a href={`mailto:${portfolioData.personal.email}`} className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-lg text-white transition-all text-sm font-medium">
-              <Mail size={18} /> Email
-            </a>
-            <div className="flex items-center gap-2 px-4 py-2 text-slate-400 text-sm">
-              <MapPin size={18} /> {portfolioData.personal.location}
+        {/* ─── HERO ─── */}
+        <section className="pt-20 md:pt-32 pb-16 sunburst relative">
+          <div className="animate-fade-up space-y-8">
+            {/* Decorative top line */}
+            <div className="flex items-center gap-4 mb-2">
+              <div className="h-px w-16 bg-gold-300/30" />
+              <span className="text-xs font-accent tracking-[0.3em] uppercase text-gold-300/50">Portfolio</span>
+            </div>
+
+            <div className="space-y-4">
+              <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[0.95]">
+                <span className="text-gold-50">Hi, I'm</span>
+                <br />
+                <span className="text-gold-gradient">{d.personal.name}</span>
+              </h1>
+              <p className="font-accent text-xl md:text-2xl text-gold-300/70 tracking-wide max-w-2xl italic">
+                {d.personal.title}
+              </p>
+            </div>
+
+            <div className="deco-line max-w-md" />
+
+            <p className="text-base md:text-lg leading-relaxed text-gold-100/60 max-w-3xl font-light">
+              {d.personal.about}
+            </p>
+
+            {/* Contact buttons */}
+            <div className="flex flex-wrap gap-3 pt-4 stagger-children">
+              <a href={d.personal.github} target="_blank" rel="noreferrer"
+                className="flex items-center gap-2.5 px-5 py-2.5 border border-gold-300/20 hover:border-gold-300/50 hover:bg-gold-300/5 rounded-sm text-gold-200 transition-all duration-300 text-sm tracking-wide group">
+                <Github size={16} />
+                <span>GitHub</span>
+                <ArrowUpRight size={14} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+              </a>
+              <a href={d.personal.linkedin} target="_blank" rel="noreferrer"
+                className="flex items-center gap-2.5 px-5 py-2.5 border border-gold-300/20 hover:border-gold-300/50 hover:bg-gold-300/5 rounded-sm text-gold-200 transition-all duration-300 text-sm tracking-wide group">
+                <Linkedin size={16} />
+                <span>LinkedIn</span>
+                <ArrowUpRight size={14} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+              </a>
+              <a href={`mailto:${d.personal.email}`}
+                className="flex items-center gap-2.5 px-5 py-2.5 bg-gold-300/10 border border-gold-300/30 hover:bg-gold-300/20 rounded-sm text-gold-100 transition-all duration-300 text-sm tracking-wide">
+                <Mail size={16} />
+                <span>Get in Touch</span>
+              </a>
+              <div className="flex items-center gap-2 px-4 py-2.5 text-gold-300/40 text-sm">
+                <MapPin size={14} /> {d.personal.location}
+              </div>
             </div>
           </div>
         </section>
 
-        {/* TIMELINE SECTION (EXPERIENCE & EDUCATION) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-          
-          {/* Work Experience */}
-          <section id="experience" className="space-y-8">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-blue-500/10 rounded-lg text-blue-400">
-                <Briefcase size={24} />
-              </div>
-              <h3 className="text-2xl font-bold text-white">Work Experience</h3>
-            </div>
-            
-            <div className="space-y-8 border-l-2 border-slate-800 ml-3 pl-8 relative">
-              {portfolioData.experience.map((job) => (
-                <div key={job.id} className="relative">
-                  <div className="absolute w-4 h-4 bg-slate-900 border-2 border-blue-500 rounded-full -left-[39px] top-1"></div>
-                  <div className="space-y-2">
-                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
-                      <h4 className="text-xl font-bold text-white">{job.role}</h4>
-                      <span className="text-sm font-medium text-blue-400 flex items-center gap-1">
-                        <Calendar size={14} /> {job.date}
-                      </span>
-                    </div>
-                    <div className="text-slate-400 font-medium">{job.company} &bull; {job.location}</div>
-                    <ul className="mt-4 space-y-2 text-slate-300">
-                      {job.bullets.map((bullet, idx) => (
-                        <li key={idx} className="flex gap-2">
-                          <ChevronRight size={16} className="text-blue-500 flex-shrink-0 mt-1" />
-                          <span className="text-sm leading-relaxed">{bullet}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    {job.images && job.images.length > 0 && (
-                      <div className="mt-4 grid grid-cols-2 gap-3">
-                        {job.images.map((img, idx) => (
-                          <img key={idx} src={img} alt={`${job.company} photo ${idx + 1}`} className="rounded-lg border border-slate-700 w-full h-auto object-cover" />
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
+        <DiamondDivider />
 
-          {/* Education */}
-          <section id="education" className="space-y-8">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-emerald-500/10 rounded-lg text-emerald-400">
-                <GraduationCap size={24} />
-              </div>
-              <h3 className="text-2xl font-bold text-white">Education</h3>
-            </div>
-            
-            <div className="space-y-8 border-l-2 border-slate-800 ml-3 pl-8 relative">
-              {portfolioData.education.map((edu) => (
-                <div key={edu.id} className="relative">
-                  <div className="absolute w-4 h-4 bg-slate-900 border-2 border-emerald-500 rounded-full -left-[39px] top-1"></div>
-                  <div className="space-y-2">
-                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
-                      <h4 className="text-xl font-bold text-white leading-tight">{edu.degree}</h4>
-                      <span className="text-sm font-medium text-emerald-400 flex items-center gap-1 shrink-0">
-                        <Calendar size={14} /> {edu.date}
-                      </span>
+        {/* ─── EXPERIENCE & EDUCATION ─── */}
+        <section id="experience" className="py-16">
+          <SectionHeading
+            icon={Briefcase}
+            iconColor="text-gold-300"
+            title="Experience"
+            subtitle="Professional Journey"
+          />
+
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
+            {/* Work Experience - takes 3 cols */}
+            <div className="lg:col-span-3 space-y-10">
+              {d.experience.map((job, i) => (
+                <div key={job.id} className="relative group">
+                  {/* Connector line */}
+                  {i < d.experience.length - 1 && (
+                    <div className="absolute left-[11px] top-12 bottom-0 w-px bg-gradient-to-b from-gold-300/30 to-transparent" />
+                  )}
+                  <div className="flex gap-6">
+                    {/* Timeline dot */}
+                    <div className="flex-shrink-0 mt-1.5">
+                      <div className="w-6 h-6 rounded-full border-2 border-gold-300/50 bg-navy-950 flex items-center justify-center timeline-dot">
+                        <div className="w-2 h-2 rounded-full bg-gold-300/70" />
+                      </div>
                     </div>
-                    <div className="text-slate-400 font-medium">{edu.school} &bull; {edu.location}</div>
-                    {edu.bullets.length > 0 && (
-                      <ul className="mt-3 space-y-2 text-slate-300">
-                        {edu.bullets.map((bullet, idx) => (
-                          <li key={idx} className="flex gap-2">
-                            <ChevronRight size={16} className="text-emerald-500 flex-shrink-0 mt-1" />
-                            <span className="text-sm leading-relaxed">{bullet}</span>
+                    {/* Content */}
+                    <div className="flex-1 space-y-3 pb-2">
+                      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1">
+                        <div>
+                          <h4 className="text-lg font-heading font-bold text-gold-50 tracking-wide">{job.role}</h4>
+                          <p className="text-gold-300/60 font-accent text-base tracking-wide">{job.company} &bull; {job.location}</p>
+                        </div>
+                        <span className="text-xs font-medium text-gold-300/50 border border-gold-300/15 px-3 py-1 rounded-sm tracking-wider whitespace-nowrap mt-1">
+                          {job.date}
+                        </span>
+                      </div>
+                      <ul className="space-y-2.5">
+                        {job.bullets.map((bullet, idx) => (
+                          <li key={idx} className="flex gap-3 text-gold-100/55 text-sm leading-relaxed">
+                            <ChevronRight size={14} className="text-gold-300/40 flex-shrink-0 mt-1" />
+                            <span>{bullet}</span>
                           </li>
                         ))}
                       </ul>
-                    )}
+                      {job.images && job.images.length > 0 && (
+                        <div className="mt-4 grid grid-cols-2 gap-3">
+                          {job.images.map((img, idx) => (
+                            <img key={idx} src={img} alt={`${job.company} ${idx + 1}`}
+                              className="rounded-sm border border-gold-300/10 w-full h-auto object-cover hover:border-gold-300/30 transition-all" />
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
-          </section>
-        </div>
 
-        {/* PROJECTS SECTION */}
-        <section id="projects" className="space-y-8">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-purple-500/10 rounded-lg text-purple-400">
-                <Code size={24} />
+            {/* Education - takes 2 cols */}
+            <div id="education" className="lg:col-span-2">
+              <div className="sticky top-24">
+                <div className="flex items-center gap-2 mb-8">
+                  <GraduationCap size={18} className="text-gold-300/60" />
+                  <h4 className="font-heading text-lg font-bold text-gold-100 tracking-wide">Education</h4>
+                </div>
+
+                <div className="space-y-6">
+                  {d.education.map((edu) => (
+                    <div key={edu.id} className="relative deco-corner p-5 border border-gold-300/10 bg-gold-300/[0.02]">
+                      <div className="space-y-2">
+                        <h5 className="font-heading text-base font-bold text-gold-50 leading-snug">{edu.degree}</h5>
+                        <p className="text-gold-300/60 font-accent text-sm tracking-wide">{edu.school}</p>
+                        <div className="flex items-center gap-1.5 text-xs text-gold-300/40">
+                          <Calendar size={12} /> {edu.date}
+                        </div>
+                        {edu.bullets.length > 0 && (
+                          <div className="mt-3 pt-3 border-t border-gold-300/10">
+                            {edu.bullets.map((b, i) => (
+                              <p key={i} className="text-xs text-gold-100/45 leading-relaxed">{b}</p>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <h3 className="text-2xl font-bold text-white">Featured Projects</h3>
             </div>
           </div>
+        </section>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <DiamondDivider />
+
+        {/* ─── PROJECTS ─── */}
+        <section id="projects" className="py-16">
+          <SectionHeading
+            icon={Code}
+            iconColor="text-gold-300"
+            title="Featured Projects"
+            subtitle="Selected Works"
+          />
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 stagger-children">
             {projects.map((project) => (
-              <div key={project.id} className="bg-slate-800/40 border border-slate-800 hover:border-slate-700 rounded-xl p-6 transition-all group flex flex-col h-full">
+              <div key={project.id}
+                className="card-glow relative border border-gold-300/10 bg-gold-300/[0.02] p-6 flex flex-col h-full group">
+
+                {/* Single image */}
                 {project.image && (
-                  <img src={project.image} alt={project.title} className="w-full h-48 object-cover rounded-lg mb-4" />
-                )}
-                {project.images && project.images.length > 0 && (
-                  <div className="grid grid-cols-3 gap-2 mb-4">
-                    {project.images.map((img, idx) => (
-                      <img key={idx} src={img} alt={`${project.title} ${idx + 1}`} className="w-full h-32 object-cover rounded-lg border border-slate-700" />
-                    ))}
+                  <div className="mb-5 -mx-6 -mt-6 overflow-hidden">
+                    <img src={project.image} alt={project.title}
+                      className="w-full h-48 object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="h-px bg-gradient-to-r from-gold-300/20 via-gold-300/40 to-gold-300/20" />
                   </div>
                 )}
-                <div className="flex justify-between items-start mb-4">
-                  <div className="flex flex-col gap-1">
-                    <h4 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">{project.title}</h4>
+
+                {/* Multiple images */}
+                {project.images && project.images.length > 0 && (
+                  <div className="mb-5 -mx-6 -mt-6">
+                    <div className={`grid gap-px ${project.images.length === 3 ? 'grid-cols-3' : 'grid-cols-2'}`}>
+                      {project.images.map((img, idx) => (
+                        <img key={idx} src={img} alt={`${project.title} ${idx + 1}`}
+                          className="w-full h-36 object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+                      ))}
+                    </div>
+                    <div className="h-px bg-gradient-to-r from-gold-300/20 via-gold-300/40 to-gold-300/20" />
+                  </div>
+                )}
+
+                {/* Header */}
+                <div className="flex justify-between items-start mb-4 gap-4">
+                  <div className="space-y-1.5">
+                    <h4 className="font-heading text-xl font-bold text-gold-50 tracking-wide group-hover:text-gold-200 transition-colors">
+                      {project.title}
+                    </h4>
                     {project.link && (
-                      <a href={project.link} target="_blank" rel="noreferrer" className="text-sm text-blue-400 hover:text-blue-300 flex items-center gap-1 w-fit">
-                        <ExternalLink size={14} /> View Project
+                      <a href={project.link} target="_blank" rel="noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs text-gold-300/60 hover:text-gold-200 transition-colors tracking-wide">
+                        <ExternalLink size={12} /> View Project
                       </a>
                     )}
                   </div>
-                  <span className="text-xs font-medium text-slate-400 bg-slate-900 px-2 py-1 rounded whitespace-nowrap ml-4 mt-1">
+                  <span className="text-xs text-gold-300/40 border border-gold-300/10 px-2.5 py-1 rounded-sm whitespace-nowrap tracking-wider">
                     {project.date}
                   </span>
                 </div>
-                
-                <ul className="space-y-2 mb-6 flex-grow">
+
+                {/* Bullets */}
+                <ul className="space-y-2.5 mb-6 flex-grow">
                   {project.bullets.map((bullet, idx) => (
-                    <li key={idx} className="text-slate-300 text-sm flex gap-2">
-                      <span className="text-purple-500 mt-1">&bull;</span>
-                      <span className="leading-relaxed">{bullet}</span>
+                    <li key={idx} className="text-sm flex gap-2.5 text-gold-100/50 leading-relaxed">
+                      <span className="text-gold-300/40 mt-0.5">&loz;</span>
+                      <span>{bullet}</span>
                     </li>
                   ))}
                 </ul>
 
-                <div className="flex flex-wrap gap-2 mt-auto">
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-gold-300/8">
                   {project.tags.map((tag, idx) => (
-                    <span key={idx} className="text-xs font-medium bg-blue-500/10 text-blue-300 px-2.5 py-1 rounded-md">
+                    <span key={idx}
+                      className="text-[11px] font-medium tracking-wider uppercase text-gold-300/50 border border-gold-300/15 px-2.5 py-1 hover:border-gold-300/40 hover:text-gold-200 transition-all cursor-default">
                       {tag}
                     </span>
                   ))}
@@ -386,29 +488,36 @@ export default function App() {
           </div>
         </section>
 
-        {/* SKILLS SECTION */}
-        <section id="skills" className="space-y-8 pb-12">
-          <div className="flex items-center gap-3">
-            <h3 className="text-2xl font-bold text-white">Technical Skills</h3>
-          </div>
-          
+        <DiamondDivider />
+
+        {/* ─── SKILLS ─── */}
+        <section id="skills" className="py-16 pb-24">
+          <SectionHeading
+            icon={Zap}
+            iconColor="text-gold-300"
+            title="Technical Skills"
+            subtitle="Tools & Technologies"
+          />
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-slate-800/30 p-6 rounded-xl border border-slate-800">
-              <h4 className="text-lg font-medium text-white mb-4">Languages</h4>
+            <div className="relative deco-corner p-8 border border-gold-300/10 bg-gold-300/[0.02]">
+              <h4 className="font-heading text-lg font-bold text-gold-100 mb-5 tracking-wide">Languages</h4>
               <div className="flex flex-wrap gap-2">
-                {portfolioData.skills.languages.map((skill, idx) => (
-                  <span key={idx} className="bg-slate-700/50 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg text-sm transition-colors cursor-default border border-slate-600/50">
+                {d.skills.languages.map((skill, idx) => (
+                  <span key={idx}
+                    className="skill-tag border border-gold-300/15 text-gold-100/50 px-4 py-2 text-sm tracking-wide cursor-default">
                     {skill}
                   </span>
                 ))}
               </div>
             </div>
-            
-            <div className="bg-slate-800/30 p-6 rounded-xl border border-slate-800">
-              <h4 className="text-lg font-medium text-white mb-4">Technologies & Frameworks</h4>
+
+            <div className="relative deco-corner p-8 border border-gold-300/10 bg-gold-300/[0.02]">
+              <h4 className="font-heading text-lg font-bold text-gold-100 mb-5 tracking-wide">Technologies &amp; Frameworks</h4>
               <div className="flex flex-wrap gap-2">
-                {portfolioData.skills.technologies.map((skill, idx) => (
-                  <span key={idx} className="bg-slate-700/50 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg text-sm transition-colors cursor-default border border-slate-600/50">
+                {d.skills.technologies.map((skill, idx) => (
+                  <span key={idx}
+                    className="skill-tag border border-gold-300/15 text-gold-100/50 px-4 py-2 text-sm tracking-wide cursor-default">
                     {skill}
                   </span>
                 ))}
@@ -418,10 +527,25 @@ export default function App() {
         </section>
 
       </main>
-      
-      {/* FOOTER */}
-      <footer className="border-t border-slate-800 py-8 text-center text-slate-500 text-sm">
-        <p>&copy; {new Date().getFullYear()} Curtis Cao. All rights reserved.</p>
+
+      {/* ─── FOOTER ─── */}
+      <footer className="border-t border-gold-300/10">
+        <div className="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="font-accent text-sm text-gold-300/30 tracking-wide">
+            &copy; {new Date().getFullYear()} Curtis Cao. All rights reserved.
+          </p>
+          <div className="flex items-center gap-6">
+            <a href={d.personal.github} target="_blank" rel="noreferrer" className="text-gold-300/30 hover:text-gold-200 transition-colors">
+              <Github size={18} />
+            </a>
+            <a href={d.personal.linkedin} target="_blank" rel="noreferrer" className="text-gold-300/30 hover:text-gold-200 transition-colors">
+              <Linkedin size={18} />
+            </a>
+            <a href={`mailto:${d.personal.email}`} className="text-gold-300/30 hover:text-gold-200 transition-colors">
+              <Mail size={18} />
+            </a>
+          </div>
+        </div>
       </footer>
     </div>
   );
