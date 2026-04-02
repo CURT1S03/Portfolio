@@ -96,6 +96,18 @@ const portfolioData = {
       ]
     },
     {
+      id: "proj-0b",
+      title: "Algae Bloom (HAB) Predictive Model",
+      date: "Mar 2025",
+      tags: ["Python", "Pandas", "Scikit-learn"],
+      link: "https://github.com/CURT1S03/Algae-ML",
+      bullets: [
+        "Engineered a Pandas pipeline to ingest, clean, and merge 5 years of disparate time-series data; implemented preprocessing steps to handle more than 15% missing values via temporal interpolation and normalized features (pH, temp) using Scikit-learn's MinMaxScaler, creating a feature-ready dataset.",
+        "Engineered 10+ new features, including 7-day rolling averages and lag variables, to capture temporal dependencies in sensor data. Trained, iterated, and compared multiple Scikit-learn models (Random Forest, GBR) to predict Phycocyanin (HAB) concentrations.",
+        "Deployed GridSearchCV for systematic hyperparameter tuning, improving the final model's predictive accuracy (RMSE) by 18% over baseline. Performed data mining by extracting feature importances to identify dissolved oxygen and temperature as the key drivers of algae blooms."
+      ]
+    },
+    {
       id: "proj-1",
       title: "Robotics Digital Twin Application",
       date: "Feb 2025",
