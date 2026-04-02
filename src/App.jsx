@@ -139,6 +139,7 @@ const portfolioData = {
       date: "Mar 2026",
       tags: ["Mobile-First", "QR Code", "UX Design", "Customer Discovery"],
       link: "https://equiplog.netlify.app/",
+      preview: "https://equiplog.netlify.app/",
       bullets: [
         "Directed product strategy by conducting customer discovery interviews with shop floor mechanics, identifying critical workflow bottlenecks to inform the MVP's focus on mobile accessibility.",
         "Streamlined equipment record retrieval, eliminating manual data entry for mechanics on the floor, by designing a mobile-first application featuring integrated QR code scanning and large-text search capabilities.",
@@ -167,6 +168,7 @@ const portfolioData = {
       date: "Dec 2025",
       tags: ["Python", "Pandas", "Scikit-learn"],
       link: "https://github.com/CURT1S03/Algae-ML",
+      images: ["/ml1.png", "/ml2.png"],
       bullets: [
         "Engineered a Pandas pipeline to ingest, clean, and merge 5 years of disparate time-series data; implemented preprocessing steps to handle more than 15% missing values via temporal interpolation and normalized features (pH, temp) using Scikit-learn's MinMaxScaler, creating a feature-ready dataset.",
         "Engineered 10+ new features, including 7-day rolling averages and lag variables, to capture temporal dependencies in sensor data. Trained, iterated, and compared multiple Scikit-learn models (Random Forest, GBR) to predict Phycocyanin (HAB) concentrations.",
@@ -441,8 +443,23 @@ export default function App() {
               <div key={project.id}
                 className="card-glow relative border border-gold-300/10 bg-gold-300/[0.02] p-6 flex flex-col h-full group">
 
+                {/* Site preview embed */}
+                {project.preview && (
+                  <div className="mb-5 -mx-6 -mt-6 overflow-hidden">
+                    <div className="relative w-full" style={{ height: '280px' }}>
+                      <iframe
+                        src={project.preview}
+                        title={`${project.title} preview`}
+                        className="absolute inset-0 w-full h-full border-0"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="h-px bg-gradient-to-r from-gold-300/20 via-gold-300/40 to-gold-300/20" />
+                  </div>
+                )}
+
                 {/* YouTube video embed */}
-                {project.video && (
+                {project.video && !project.preview && (
                   <div className="mb-5 -mx-6 -mt-6 overflow-hidden">
                     <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                       <iframe
