@@ -147,6 +147,32 @@ const portfolioData = {
         "Delivered measurable real-world impact during initial testing by reducing average issue logging time by over 50%, validating the application's ability to drive operational efficiency and safety compliance."
       ]
     },
+ 
+     {
+      id: "proj-2",
+      title: "Solar Racing Strategy Simulator",
+      date: "Present",
+      tags: ["InfluxDB", "BoTorch/GPyTorch", "Flask", "React", "Docker"],
+      link: "",
+      images: ["/simoutput1.png", "/simoutput2.png", "/simoutput3.png"],
+      bullets: [
+        "Improved race-day lap prediction accuracy from 29% to 78% by building a pace-based telemetry pipeline.",
+        "Optimized speed profiles across a 24-dimensional continuous search space maximizing FSGP competition score using Bayesian optimization.",
+        "Delivered a full-stack race operations platform serving 11,000+ lines of code across a Flask REST API, React dashboard, and Dockerized deployment."
+      ]
+    },
+       {
+      id: "proj-0b",
+      title: "Algae Bloom (HAB) Predictive Model",
+      date: "Dec 2025",
+      tags: ["Python", "Pandas", "Scikit-learn"],
+      link: "https://github.com/CURT1S03/Algae-ML",
+      bullets: [
+        "Engineered a Pandas pipeline to ingest, clean, and merge 5 years of disparate time-series data; implemented preprocessing steps to handle more than 15% missing values via temporal interpolation and normalized features (pH, temp) using Scikit-learn's MinMaxScaler, creating a feature-ready dataset.",
+        "Engineered 10+ new features, including 7-day rolling averages and lag variables, to capture temporal dependencies in sensor data. Trained, iterated, and compared multiple Scikit-learn models (Random Forest, GBR) to predict Phycocyanin (HAB) concentrations.",
+        "Deployed GridSearchCV for systematic hyperparameter tuning, improving the final model's predictive accuracy (RMSE) by 18% over baseline. Performed data mining by extracting feature importances to identify dissolved oxygen and temperature as the key drivers of algae blooms."
+      ]
+    },
     {
       id: "proj-ascensio",
       title: "Ascensio (3D Platformer Game)",
@@ -160,31 +186,9 @@ const portfolioData = {
         "Spearheaded a complete redesign of the main playable level by seamlessly integrating complex 3D assets (villages, beanstalks, bridges) and managing large binary files via Git LFS to maintain optimal project performance."
       ]
     },
-    {
-      id: "proj-2",
-      title: "Solar Racing Strategy Simulator",
-      date: "2025 - Present",
-      tags: ["InfluxDB", "BoTorch/GPyTorch", "Flask", "React", "Docker"],
-      link: "",
-      images: ["/simoutput1.png", "/simoutput2.png", "/simoutput3.png"],
-      bullets: [
-        "Improved race-day lap prediction accuracy from 29% to 78% by building a pace-based telemetry pipeline.",
-        "Optimized speed profiles across a 24-dimensional continuous search space maximizing FSGP competition score using Bayesian optimization.",
-        "Delivered a full-stack race operations platform serving 11,000+ lines of code across a Flask REST API, React dashboard, and Dockerized deployment."
-      ]
-    },
-    {
-      id: "proj-0b",
-      title: "Algae Bloom (HAB) Predictive Model",
-      date: "Mar 2025",
-      tags: ["Python", "Pandas", "Scikit-learn"],
-      link: "https://github.com/CURT1S03/Algae-ML",
-      bullets: [
-        "Engineered a Pandas pipeline to ingest, clean, and merge 5 years of disparate time-series data; implemented preprocessing steps to handle more than 15% missing values via temporal interpolation and normalized features (pH, temp) using Scikit-learn's MinMaxScaler, creating a feature-ready dataset.",
-        "Engineered 10+ new features, including 7-day rolling averages and lag variables, to capture temporal dependencies in sensor data. Trained, iterated, and compared multiple Scikit-learn models (Random Forest, GBR) to predict Phycocyanin (HAB) concentrations.",
-        "Deployed GridSearchCV for systematic hyperparameter tuning, improving the final model's predictive accuracy (RMSE) by 18% over baseline. Performed data mining by extracting feature importances to identify dissolved oxygen and temperature as the key drivers of algae blooms."
-      ]
-    },
+     
+   
+   
     {
       id: "proj-1",
       title: "Robotics Digital Twin Application",
