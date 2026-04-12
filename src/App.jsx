@@ -89,8 +89,8 @@ const portfolioData = {
       title: "EquipLog",
       date: "Mar 2026",
       tags: ["Mobile-First", "QR Code", "UX Design", "Customer Discovery"],
-      link: "https://equiplog.netlify.app/",
-      preview: "https://equiplog.netlify.app/",
+      link: "https://portfolio-21md.vercel.app/",
+      preview: "https://portfolio-21md.vercel.app/",
       bullets: [
         "Directed product strategy by conducting customer discovery interviews with shop floor mechanics, identifying critical workflow bottlenecks to inform the MVP's focus on mobile accessibility.",
         "Streamlined equipment record retrieval, eliminating manual data entry for mechanics on the floor, by designing a mobile-first application featuring integrated QR code scanning and large-text search capabilities.",
