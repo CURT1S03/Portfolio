@@ -191,6 +191,7 @@ const portfolioData = {
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [showProjects, setShowProjects] = useState(false);
   const d = portfolioData;
 
   return (
@@ -199,8 +200,8 @@ export default function App() {
       <Navbar email={d.personal.email} />
       <HeroSection data={d.personal} />
       <ExperienceSection experience={d.experience} education={d.education} />
-      <DeepThinkSection />
-      <SelectedWorks projects={d.projects} />
+      <DeepThinkSection onRevealProjects={() => setShowProjects(true)} />
+      {showProjects && <SelectedWorks projects={d.projects} />}
       <SkillsSection skills={d.skills} />
       <FooterSection data={d.personal} />
     </div>

@@ -14,7 +14,7 @@ const thinkingSteps = [
 const finalResult =
   "Curtis is a strong candidate because he bridges backend engineering and machine learning with real production experience — from deploying containerized microservices at scale, to building RAG chatbots over 5GB+ datasets, to architecting digital twins with NVIDIA Omniverse. His work at LSPediA and Georgia Tech Solar Racing demonstrates he can ship end-to-end systems that solve real problems.";
 
-export default function DeepThinkSection() {
+export default function DeepThinkSection({ onRevealProjects }) {
   const [phase, setPhase] = useState('idle'); // idle | thinking | done
   const [visibleSteps, setVisibleSteps] = useState(0);
   const [typedResult, setTypedResult] = useState('');
@@ -60,7 +60,11 @@ export default function DeepThinkSection() {
   }, [phase]);
 
   function scrollToProjects() {
-    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+    onRevealProjects?.();
+    // Wait a tick for the section to mount, then scroll
+    setTimeout(() => {
+      document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
   }
 
   return (
