@@ -92,13 +92,6 @@ export default function HeroSection({ data }) {
 
         <div className="blur-in inline-flex flex-wrap justify-center gap-4" style={{ opacity: 0 }}>
           <a
-            href="#projects"
-            className="group relative rounded-full text-sm px-7 py-3.5 bg-foreground text-bg hover:bg-bg hover:text-foreground transition-all duration-300 hover:scale-105"
-          >
-            <span className="absolute inset-[-2px] rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity -z-10" />
-            See Works
-          </a>
-          <a
             href={`mailto:${data.email}`}
             className="group relative rounded-full text-sm px-7 py-3.5 border-2 border-stroke bg-bg text-foreground hover:border-transparent transition-all duration-300 hover:scale-105"
           >

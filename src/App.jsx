@@ -14,6 +14,7 @@ import FooterSection from './components/FooterSection';
    ============================================ */
 
 const portfolioData = {
+  base: import.meta.env.BASE_URL,
   personal: {
     name: "Curtis Cao",
     title: "Computer Science Student & Software Engineer",
@@ -52,7 +53,7 @@ const portfolioData = {
       location: "Atlanta, GA",
       date: "2025 - Present",
       type: "work",
-      images: ["/solar1.png", "/unnamed.png"],
+      images: [`${import.meta.env.BASE_URL}solar1.png`, `${import.meta.env.BASE_URL}unnamed.png`],
       bullets: [
         "Integrated real-time environmental data into the team's energy forecasting models by utilizing the Solcast API to query solar irradiance (GHI) and temperature metrics at 30-minute intervals across 1,500+ mile routes.",
         "Engineered an automated geospatial data pipeline using Python that converted KML route files into structured DataFrames, identifying critical race segments based on custom distance and 3.5% elevation thresholds.",
@@ -106,7 +107,7 @@ const portfolioData = {
       date: "Present",
       tags: ["InfluxDB", "BoTorch/GPyTorch", "Flask", "React", "Docker"],
       link: "",
-      images: ["/simoutput1.png", "/simoutput2.png", "/simoutput3.png"],
+      images: [`${import.meta.env.BASE_URL}simoutput1.png`, `${import.meta.env.BASE_URL}simoutput2.png`, `${import.meta.env.BASE_URL}simoutput3.png`],
       bullets: [
         "Improved race-day lap prediction accuracy from 29% to 78% by building a pace-based telemetry pipeline.",
         "Optimized speed profiles across a 24-dimensional continuous search space maximizing FSGP competition score using Bayesian optimization.",
@@ -119,7 +120,7 @@ const portfolioData = {
       date: "Dec 2025",
       tags: ["Python", "Pandas", "Scikit-learn"],
       link: "https://github.com/CURT1S03/Algae-ML",
-      images: ["/ml1.png", "/ml2.png"],
+      images: [`${import.meta.env.BASE_URL}ml1.png`, `${import.meta.env.BASE_URL}ml2.png`],
       bullets: [
         "Engineered a Pandas pipeline to ingest, clean, and merge 5 years of disparate time-series data; implemented preprocessing steps to handle more than 15% missing values via temporal interpolation and normalized features (pH, temp) using Scikit-learn's MinMaxScaler, creating a feature-ready dataset.",
         "Engineered 10+ new features, including 7-day rolling averages and lag variables, to capture temporal dependencies in sensor data. Trained, iterated, and compared multiple Scikit-learn models (Random Forest, GBR) to predict Phycocyanin (HAB) concentrations.",
@@ -132,7 +133,7 @@ const portfolioData = {
       date: "Nov 2025",
       tags: ["NVIDIA Omniverse", "Streamlit", "FastAPI", "ROS 2", "Oracle DB"],
       link: "",
-      image: "/RoboticsDigitwin.png",
+      image: `${import.meta.env.BASE_URL}RoboticsDigitwin.png`,
       bullets: [
         "Architected a full-stack digital twin framework using NVIDIA Omniverse to validate robotic planning algorithms.",
         "Developed RESTful API endpoints with FastAPI that interfaced with a core ROS 2 pub/sub system.",
@@ -159,7 +160,7 @@ const portfolioData = {
       date: "Nov 2023",
       tags: ["Python", "OpenCV"],
       link: "https://github.com/CURT1S03/MazeSolver",
-      image: "/Maze.png",
+      image: `${import.meta.env.BASE_URL}Maze.png`,
       bullets: [
         "Built an automated maze-solving application in Python using OpenCV to detect and visualize solution paths through perfect maze images.",
         "Implemented a multi-stage image processing pipeline leveraging grayscale conversion, binary thresholding, contour detection, and morphological transformations (dilation/erosion).",
@@ -171,15 +172,16 @@ const portfolioData = {
     },
     {
       id: "proj-5",
-      title: "JavaFX Music Player",
+      title: "Spotify Wrap",
       date: "Aug 2023",
-      tags: ["Java", "Eclipse", "JavaFX"],
+      tags: ["Android", "Spotify API", "Firebase", "OpenAI API", "CI/CD"],
       link: "https://sites.google.com/view/secondproject/our-app?authuser=0",
       preview: "https://www.youtube.com/embed/gkT-ZTcT9",
       bullets: [
-        "Utilized JavaFX to craft a dynamic and visually appealing user interface for music playback.",
-        "Implemented comprehensive music playback functionalities (play, pause, stop, track selection).",
-        "Developed a robust library management system allowing users to organize music collections."
+        "Integrated the Spotify API to fetch and parse user listening data, generating personalized Wrapped-style summaries with customizable timespan controls.",
+        "Leveraged the OpenAI API to produce dynamic, creative descriptions of users' music tastes and power a Duo-Wrapped feature comparing listening habits between friends.",
+        "Built user authentication and persistent account management with Firebase, supporting sign-up, login, password updates, and account deletion.",
+        "Introduced a CI/CD pipeline using GitHub Actions to enforce automated build verification and code formatting checks on every commit."
       ]
     }
   ]
