@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const headerAnimation = {
   initial: { opacity: 0, y: 30 },
@@ -7,15 +8,16 @@ const headerAnimation = {
   viewport: { once: true, margin: "-100px" },
 };
 
-const bentoItems = [
-  { id: "proj-0a", className: "md:col-span-7", aspect: "16/10" },
-  { id: "proj-0", className: "md:col-span-5", aspect: "4/3" },
-  { id: "proj-2", className: "md:col-span-7", aspect: "16/10" },
-  { id: "proj-0b", className: "md:col-span-5", aspect: "4/3" },
-  { id: "proj-ascensio", className: "md:col-span-7", aspect: "16/10" },
-  { id: "proj-1", className: "md:col-span-7", aspect: "16/10" },
-  { id: "proj-4", className: "md:col-span-5", aspect: "4/3" },
-];
+const CATEGORIES = ["All", "Robotics & Simulation", "Machine Learning", "Full-Stack Apps", "Fun"];
+
+// Alternating bento layout pattern for each row pair
+function getBentoLayout(index) {
+  const pair = index % 4;
+  if (pair === 0) return { className: "md:col-span-7", aspect: "16/10" };
+  if (pair === 1) return { className: "md:col-span-5", aspect: "4/3" };
+  if (pair === 2) return { className: "md:col-span-5", aspect: "4/3" };
+  return { className: "md:col-span-7", aspect: "16/10" };
+}
 
 function getProjectImage(project) {
   if (project.image) return project.image;
@@ -97,9 +99,11 @@ function ProjectCard({ project, className, aspect }) {
 }
 
 export default function SelectedWorks({ projects }) {
-  const remainingProjects = projects.filter(
-    (p) => !bentoItems.find((b) => b.id === p.id)
-  );
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const filteredProjects = activeCategory === "All"
+    ? projects
+    : projects.filter((p) => Array.isArray(p.category) ? p.category.includes(activeCategory) : p.category === activeCategory);
 
   return (
     <section id="projects" className="bg-bg py-12 md:py-16">
@@ -120,118 +124,79 @@ export default function SelectedWorks({ projects }) {
           </p>
         </motion.div>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6">
-          {bentoItems.map(({ id, className, aspect }) => {
-            const project = projects.find((p) => p.id === id);
-            if (!project) return null;
-
-            return (
-              <motion.div
-                key={id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true, margin: "-50px" }}
-                className={className}
-              >
-                <ProjectCard
-                  project={project}
-                  className="w-full"
-                  aspect={aspect}
-                />
-                {/* Description below card */}
-                <div className="mt-4 space-y-2">
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-medium text-foreground">{project.title}</h3>
-                    <span className="text-xs text-muted">{project.date}</span>
-                  </div>
-                  <div className="flex flex-wrap gap-1.5 mb-2">
-                    {project.tags.map((tag, i) => (
-                      <span key={i} className="text-[10px] text-muted border border-stroke px-2 py-0.5 rounded-full">{tag}</span>
-                    ))}
-                  </div>
-                  <ul className="space-y-1.5">
-                    {project.bullets.map((bullet, idx) => (
-                      <li key={idx} className="text-sm text-muted/80 flex gap-2 leading-relaxed">
-                        <span className="text-stroke mt-1.5 flex-shrink-0">•</span>
-                        <span>{bullet}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  {project.link && (
-                    <a href={project.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs text-foreground/60 hover:text-foreground transition-colors mt-1">
-                      View Project <span>↗</span>
-                    </a>
-                  )}
-                </div>
-              </motion.div>
-            );
-          })}
+        {/* Category Tabs */}
+        <div className="flex flex-wrap gap-2 mb-10">
+          {CATEGORIES.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`px-4 py-2 text-xs rounded-full border transition-all duration-300 ${
+                activeCategory === cat
+                  ? "bg-foreground text-bg border-foreground"
+                  : "bg-transparent text-muted border-stroke hover:text-foreground hover:border-foreground/50"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
         </div>
 
-        {/* Remaining projects as pills */}
-        {remainingProjects.length > 0 && (
-          <div className="mt-8 space-y-3">
-            {remainingProjects.map((project) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-              >
-                {project.link ? (
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center justify-between gap-6 p-4 sm:p-5 bg-surface/30 hover:bg-surface border border-stroke rounded-[40px] sm:rounded-full transition-colors group"
-                  >
-                    <div className="flex items-center gap-4 min-w-0">
-                      <div className="w-10 h-10 rounded-full accent-gradient flex-shrink-0 flex items-center justify-center">
-                        <span className="text-bg text-xs font-bold">
-                          {project.title.charAt(0)}
-                        </span>
-                      </div>
-                      <div className="min-w-0">
-                        <h4 className="text-foreground font-medium truncate">
-                          {project.title}
-                        </h4>
-                        <p className="text-xs text-muted truncate">
-                          {project.tags.join(' · ')}
-                        </p>
-                      </div>
+        {/* Bento Grid */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeCategory}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6"
+          >
+            {filteredProjects.map((project, index) => {
+              const { className, aspect } = getBentoLayout(index);
+              return (
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  className={className}
+                >
+                  <ProjectCard
+                    project={project}
+                    className="w-full"
+                    aspect={aspect}
+                  />
+                  {/* Description below card */}
+                  <div className="mt-4 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-lg font-medium text-foreground">{project.title}</h3>
+                      <span className="text-xs text-muted">{project.date}</span>
                     </div>
-                    <span className="text-xs text-muted group-hover:text-foreground transition-colors flex-shrink-0">
-                      View →
-                    </span>
-                  </a>
-                ) : (
-                  <div className="flex items-center justify-between gap-6 p-4 sm:p-5 bg-surface/30 border border-stroke rounded-[40px] sm:rounded-full">
-                    <div className="flex items-center gap-4 min-w-0">
-                      <div className="w-10 h-10 rounded-full accent-gradient flex-shrink-0 flex items-center justify-center">
-                        <span className="text-bg text-xs font-bold">
-                          {project.title.charAt(0)}
-                        </span>
-                      </div>
-                      <div className="min-w-0">
-                        <h4 className="text-foreground font-medium truncate">
-                          {project.title}
-                        </h4>
-                        <p className="text-xs text-muted truncate">
-                          {project.tags.join(' · ')}
-                        </p>
-                      </div>
+                    <div className="flex flex-wrap gap-1.5 mb-2">
+                      {project.tags.map((tag, i) => (
+                        <span key={i} className="text-[10px] text-muted border border-stroke px-2 py-0.5 rounded-full">{tag}</span>
+                      ))}
                     </div>
-                    <span className="text-xs text-muted flex-shrink-0">
-                      {project.date}
-                    </span>
+                    <ul className="space-y-1.5">
+                      {project.bullets.map((bullet, idx) => (
+                        <li key={idx} className="text-sm text-muted/80 flex gap-2 leading-relaxed">
+                          <span className="text-stroke mt-1.5 flex-shrink-0">•</span>
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    {project.link && (
+                      <a href={project.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs text-foreground/60 hover:text-foreground transition-colors mt-1">
+                        View Project <span>↗</span>
+                      </a>
+                    )}
                   </div>
-                )}
-              </motion.div>
-            ))}
-          </div>
-        )}
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );
