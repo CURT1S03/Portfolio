@@ -8,13 +8,13 @@ const headerAnimation = {
 };
 
 const bentoItems = [
-  { id: "proj-0", className: "md:col-span-7", aspect: "16/10" },
-  { id: "proj-2", className: "md:col-span-5", aspect: "4/3" },
+  { id: "proj-0a", className: "md:col-span-7", aspect: "16/10" },
+  { id: "proj-0", className: "md:col-span-5", aspect: "4/3" },
+  { id: "proj-2", className: "md:col-span-7", aspect: "16/10" },
   { id: "proj-0b", className: "md:col-span-5", aspect: "4/3" },
   { id: "proj-ascensio", className: "md:col-span-7", aspect: "16/10" },
   { id: "proj-1", className: "md:col-span-7", aspect: "16/10" },
   { id: "proj-4", className: "md:col-span-5", aspect: "4/3" },
-  { id: "proj-5", className: "md:col-span-7", aspect: "16/10" },
 ];
 
 function getProjectImage(project) {

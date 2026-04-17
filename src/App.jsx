@@ -86,6 +86,19 @@ const portfolioData = {
   ],
   projects: [
     {
+      id: "proj-0a",
+      title: "Full-Stack RL Training Environment for Quadrupeds",
+      date: "Apr 2026",
+      tags: ["React", "FastAPI", "NVIDIA Isaac Sim", "Reinforcement Learning", "PPO"],
+      link: "https://github.com/CURT1S03/quadruped-drl-platform",
+      video: "https://www.youtube.com/embed/Xhlh6Zme6dA",
+      bullets: [
+        "Developed a full-stack web platform for training quadruped robots using deep reinforcement learning, integrating NVIDIA Isaac Sim/Isaac Lab for GPU-accelerated physics simulation with real-time visualized training and metric dashboards.",
+        "Developed a React/FastAPI platform to configure, launch, and monitor Isaac Sim RL training with live WebSocket metrics, incorporating a custom URDF/USD and terrain upload pipeline for user-defined assets.",
+        "Trained quadruped locomotion policies using Proximal Policy Optimization (PPO) with GPU-parallelized reinforcement learning across up to 4,096 simultaneous environments, tuning reward shaping, learning rate, and episode parameters to optimize gait stability over rough and obstacle-filled terrains."
+      ]
+    },
+    {
       id: "proj-0",
       title: "EquipLog",
       date: "Mar 2026",
@@ -101,17 +114,18 @@ const portfolioData = {
       ]
     },
  
-     {
+    {
       id: "proj-2",
-      title: "Solar Racing Strategy Simulator",
-      date: "Present",
-      tags: ["InfluxDB", "BoTorch/GPyTorch", "Flask", "React", "Docker"],
+      title: "Vision Augmented Race Strategy Engine",
+      date: "2025 – Present",
+      tags: ["InfluxDB", "NVIDIA Jetson", "YOLOv8", "U-Net", "MiDaS"],
       link: "",
       images: [`${import.meta.env.BASE_URL}simoutput1.png`, `${import.meta.env.BASE_URL}simoutput2.png`, `${import.meta.env.BASE_URL}simoutput3.png`],
       bullets: [
-        "Improved race-day lap prediction accuracy from 29% to 78% by building a pace-based telemetry pipeline.",
-        "Optimized speed profiles across a 24-dimensional continuous search space maximizing FSGP competition score using Bayesian optimization.",
-        "Delivered a full-stack race operations platform serving 11,000+ lines of code across a Flask REST API, React dashboard, and Dockerized deployment."
+        "Improved in race lap prediction accuracy from 29% to 78% by fusing real time InfluxDB telemetry, Solcast solar irradiance forecasts, and onboard computer vision into a unified energy model across a 14 kWh battery budget.",
+        "Designed an edge CV pipeline on Nvidia Jetson Orin Nano that runs U-Net cloud segmentation on a sky facing camera and YOLOv8 nano object detection with MiDaS monocular depth estimation on a forward facing global shutter camera, publishing structured state vectors to InfluxDB at 2 Hz over cellular backhaul.",
+        "Integrated CV outputs directly into a physics based speed optimizer: cloud cover fraction applies a real time derate to the solar power model, detected lead vehicle distance dynamically caps the 36 mph sweep space, and surface classification adjusts the rolling resistance coefficient, reducing strategy decision latency from minutes to sub second.",
+        "Engineered the live prediction model as a constrained energy-balance optimizer that fuses Solcast forecasts with real time camera derived cloud cover to derate array power, caps the 36 speed sweep to the lead vehicle distance detected by MiDaS, and adjusts rolling resistance from surface classification while accounting for aerodynamic drag, lift augmented tire loads, and per corner braking losses."
       ]
     },
        {
@@ -168,20 +182,6 @@ const portfolioData = {
         "Engineered bitwise masking and channel manipulation to overlay computed solution paths onto original maze images.",
         "Designed the pipeline to output intermediate processing steps for visual debugging and analysis of each transformation stage.",
         "Tested across multiple maze complexities (5×5, 20×20, 50×50) to validate solver accuracy and robustness."
-      ]
-    },
-    {
-      id: "proj-5",
-      title: "Spotify Wrap",
-      date: "Aug 2023",
-      tags: ["Android", "Spotify API", "Firebase", "OpenAI API", "CI/CD"],
-      link: "https://sites.google.com/view/secondproject/our-app?authuser=0",
-      preview: "https://www.youtube.com/embed/gkT-ZTcT9",
-      bullets: [
-        "Integrated the Spotify API to fetch and parse user listening data, generating personalized Wrapped-style summaries with customizable timespan controls.",
-        "Leveraged the OpenAI API to produce dynamic, creative descriptions of users' music tastes and power a Duo-Wrapped feature comparing listening habits between friends.",
-        "Built user authentication and persistent account management with Firebase, supporting sign-up, login, password updates, and account deletion.",
-        "Introduced a CI/CD pipeline using GitHub Actions to enforce automated build verification and code formatting checks on every commit."
       ]
     }
   ]
