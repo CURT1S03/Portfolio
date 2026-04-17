@@ -24,7 +24,7 @@ const portfolioData = {
     linkedin: "https://linkedin.com/in/curtiscao/",
     github: "https://github.com/Cwcao",
     citizenship: "U.S. Citizen",
-    about: "I am a Computer Science student at Georgia Tech with a strong focus on backend engineering, data pipelines, and machine learning. Experienced in building robust APIs, deploying microservices, and architecting complex applications from RAG chatbots to digital twins."
+    about: "I am a Computer Science student at Georgia Tech specializing in machine learning, full-stack architecture, and robotics software. I have a proven track record of engineering end-to-end systems, from deploying cloud-based NLP pipelines and LLM chatbots to building edge-deployed computer vision models for autonomous systems."
   },
   skills: {
     languages: ["C", "C++", "Java", "JavaScript", "Python", "HTML", "CSS"],

@@ -5,14 +5,15 @@ const thinkingSteps = [
   "Scanning professional experience...",
   "Cross-referencing: LSPediA • Georgia Tech Solar Racing...",
   "Analyzing backend systems → RAG chatbot, microservices, ETL pipelines...",
-  "Evaluating ML expertise → PyTorch, Scikit-learn, computer vision...",
-  "Assessing full-stack capabilities → FastAPI, Docker, Kubernetes...",
+  "Evaluating ML expertise → PyTorch, reinforcement learning, computer vision...",
+  "Assessing robotics & simulation → NVIDIA Isaac Sim, Jetson, Omniverse...",
+  "Assessing full-stack capabilities → FastAPI, React, Docker, Kubernetes...",
   "Synthesizing key differentiators...",
   "Generating results ✦",
 ];
 
 const finalResult =
-  "Curtis is a strong candidate because he bridges backend engineering and machine learning with real production experience — from deploying containerized microservices at scale, to building RAG chatbots over 5GB+ datasets, to architecting digital twins with NVIDIA Omniverse. His work at LSPediA and Georgia Tech Solar Racing demonstrates he can ship end-to-end systems that solve real problems.";
+  "Curtis is a strong candidate because he bridges machine learning, robotics software, and full-stack architecture with real production experience — from training quadruped locomotion policies with GPU-parallelized reinforcement learning, to deploying edge computer vision pipelines on NVIDIA Jetson for autonomous solar racing strategy, to building RAG chatbots over 5GB+ datasets and containerized microservices at scale. His work at LSPediA and Georgia Tech Solar Racing demonstrates he can ship end-to-end systems that solve real problems.";
 
 export default function DeepThinkSection({ onRevealProjects }) {
   const [phase, setPhase] = useState('idle'); // idle | thinking | done
