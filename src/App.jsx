@@ -190,6 +190,20 @@ const portfolioData = {
         "Designed the pipeline to output intermediate processing steps for visual debugging and analysis of each transformation stage.",
         "Tested across multiple maze complexities (5×5, 20×20, 50×50) to validate solver accuracy and robustness."
       ]
+    },
+    {
+      id: "proj-oss",
+      title: "Open Source Contributor | Career-Ops",
+      date: "Apr 2026",
+      category: "Open Source",
+      tags: ["Open Source", "LaTeX", "Node.js", "pdflatex", "36k+ Stars in 10 Days"],
+      link: "https://github.com/santifer/career-ops",
+      images: [ `${import.meta.env.BASE_URL}careerops_firstPR.png`],
+      bullets: [
+        "Contributed to Career-Ops, a rapidly trending open-source project that amassed over 36,000 GitHub stars within 10 days of launch, delivering a major feature enhancement merged into the main branch.",
+        "Engineered a LaTeX and Overleaf CV export feature, integrating pdflatex compilation directly into the application's core architecture.",
+        "Resolved a major community request (Issue #47) by delivering the end-to-end PDF generation pipeline, successfully merged into the main branch (PR #362)."
+      ]
     }
   ]
 };

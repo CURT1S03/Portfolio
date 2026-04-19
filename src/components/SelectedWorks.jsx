@@ -8,7 +8,7 @@ const headerAnimation = {
   viewport: { once: true, margin: "-100px" },
 };
 
-const CATEGORIES = ["All", "Robotics & Simulation", "Machine Learning", "Full-Stack Apps", "Fun"];
+const CATEGORIES = ["All", "Robotics & Simulation", "Machine Learning", "Full-Stack Apps", "Fun", "Open Source"];
 
 // Alternating bento layout pattern for each row pair
 function getBentoLayout(index) {
