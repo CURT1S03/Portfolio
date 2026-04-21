@@ -86,6 +86,20 @@ const portfolioData = {
   ],
   projects: [
     {
+      id: "proj-oss",
+      title: "Open Source Contributor | Career-Ops",
+      date: "Apr 2026",
+      category: "Open Source",
+      tags: ["Open Source", "LaTeX", "Node.js", "pdflatex", "36k+ Stars in 10 Days"],
+      link: "https://github.com/santifer/career-ops",
+      images: [ `${import.meta.env.BASE_URL}careerops_firstPR.png`],
+      bullets: [
+        "A feature contribution to Career-Ops, a rapidly trending open-source project that gained over 36,000 GitHub stars within 10 days of launch.",
+        "Implements a full LaTeX and Overleaf CV export feature, integrating pdflatex compilation directly into the application's existing architecture.",
+        "Resolved Issue #47, a high-demand community request, delivering the end-to-end PDF generation pipeline as a merged pull request (PR #362)."
+      ]
+    },
+    {
       id: "proj-0a",
       title: "Full-Stack RL Training Environment for Quadrupeds",
       date: "Apr 2026",
@@ -94,9 +108,9 @@ const portfolioData = {
       link: "https://github.com/CURT1S03/quadruped-drl-platform",
       video: "https://www.youtube.com/embed/Xhlh6Zme6dA",
       bullets: [
-        "Developed a full-stack web platform for training quadruped robots using deep reinforcement learning, integrating NVIDIA Isaac Sim/Isaac Lab for GPU-accelerated physics simulation with real-time visualized training and metric dashboards.",
-        "Developed a React/FastAPI platform to configure, launch, and monitor Isaac Sim RL training with live WebSocket metrics, incorporating a custom URDF/USD and terrain upload pipeline for user-defined assets.",
-        "Trained quadruped locomotion policies using Proximal Policy Optimization (PPO) with GPU-parallelized reinforcement learning across up to 4,096 simultaneous environments, tuning reward shaping, learning rate, and episode parameters to optimize gait stability over rough and obstacle-filled terrains."
+        "A comprehensive web platform designed to streamline and visualize the training of quadruped robots using GPU-parallelized deep reinforcement learning in NVIDIA Isaac Sim.",
+        "Features a custom React and FastAPI dashboard that allows users to seamlessly upload URDF models and custom terrains, configure complex training parameters, and launch Isaac Sim environments dynamically.",
+        "Includes real-time WebSocket integrations to stream training metrics and dynamically monitor Proximal Policy Optimization (PPO) algorithms as policies learn gait stability and obstacle traversal across thousands of parallel environments."
       ]
     },
     {
@@ -108,11 +122,9 @@ const portfolioData = {
       link: "https://portfolio-21md.vercel.app/",
       preview: "https://portfolio-21md.vercel.app/",
       bullets: [
-        "Directed product strategy by conducting customer discovery interviews with shop floor mechanics, identifying critical workflow bottlenecks to inform the MVP's focus on mobile accessibility.",
-        "Streamlined equipment record retrieval, eliminating manual data entry for mechanics on the floor, by designing a mobile-first application featuring integrated QR code scanning and large-text search capabilities.",
-        "Accelerated the safety risk and issue reporting process to under 30 seconds per instance\u2014requiring fewer than 3 screen taps\u2014by developing a highly accessible, glove-friendly user interface with quick-toggle statuses.",
-        "Improved diagnostic clarity and cross-team communication for maintenance technicians by implementing a photo-attachment feature within the issue-logging pipeline, providing immediate visual context for future repairs.",
-        "Delivered measurable real-world impact during initial testing by reducing average issue logging time by over 50%, validating the application's ability to drive operational efficiency and safety compliance."
+        "A mobile-first workflow solution designed directly from customer discovery interviews to address the critical friction points shop floor mechanics face during equipment maintenance.",
+        "The application entirely eliminates manual data entry by incorporating large-text search features and integrated QR code scanning for instantaneous equipment record retrieval.",
+        "It drastically accelerates safety risk and fault reporting through a highly accessible, glove-friendly interface, enabling technicians to log issues and attach contextual diagnostic photos in under 30 seconds."
       ]
     },
  
@@ -121,14 +133,14 @@ const portfolioData = {
       title: "Vision Augmented Race Strategy Engine",
       date: "2025 – Present",
       category: "Robotics & Simulation",
-      tags: ["InfluxDB", "NVIDIA Jetson", "YOLOv8", "U-Net", "MiDaS"],
+      tags: ["InfluxDB", "NVIDIA Jetson", "YOLOv8", "U-Net", "MiDaS", "Docker", "AWS EC2"],
       link: "",
       image: `${import.meta.env.BASE_URL}srsim.png`,
       bullets: [
-        "Improved in race lap prediction accuracy from 29% to 78% by fusing real time InfluxDB telemetry, Solcast solar irradiance forecasts, and onboard computer vision into a unified energy model across a 14 kWh battery budget.",
-        "Designed an edge CV pipeline on Nvidia Jetson Orin Nano that runs U-Net cloud segmentation on a sky facing camera and YOLOv8 nano object detection with MiDaS monocular depth estimation on a forward facing global shutter camera, publishing structured state vectors to InfluxDB at 2 Hz over cellular backhaul.",
-        "Integrated CV outputs directly into a physics based speed optimizer: cloud cover fraction applies a real time derate to the solar power model, detected lead vehicle distance dynamically caps the 36 mph sweep space, and surface classification adjusts the rolling resistance coefficient, reducing strategy decision latency from minutes to sub second.",
-        "Engineered the live prediction model as a constrained energy-balance optimizer that fuses Solcast forecasts with real time camera derived cloud cover to derate array power, caps the 36 speed sweep to the lead vehicle distance detected by MiDaS, and adjusts rolling resistance from surface classification while accounting for aerodynamic drag, lift augmented tire loads, and per corner braking losses."
+        "An advanced, edge-deployed race strategy platform built for the Georgia Tech Solar Racing team, fusing real-time telemetry, irradiance forecasting, and onboard computer vision to optimize the vehicle's 14 kWh energy budget.",
+        "Runs a sophisticated CV pipeline on an NVIDIA Jetson Orin Nano, executing U-Net sky segmentation alongside YOLOv8 object detection and MiDaS depth estimation, streaming structured state data over cellular backhaul.",
+        "Continuously dynamically adjusts physics-based speed models by using cloud-cover to derate array power, automatically capping speed sweeps based on detected lead vehicles, and adapting rolling resistance calculations to current surface classifications.",
+        "The strategy backend and data ingestion services are fully containerized with Docker and deployed to AWS EC2, enabling remote updates to race models without physical access to the chase vehicle."
       ]
     },
        {
@@ -140,9 +152,9 @@ const portfolioData = {
       link: "https://github.com/CURT1S03/Algae-ML",
       images: [`${import.meta.env.BASE_URL}ml1.png`, `${import.meta.env.BASE_URL}ml2.png`],
       bullets: [
-        "Engineered a Pandas pipeline to ingest, clean, and merge 5 years of disparate time-series data; implemented preprocessing steps to handle more than 15% missing values via temporal interpolation and normalized features (pH, temp) using Scikit-learn's MinMaxScaler, creating a feature-ready dataset.",
-        "Engineered 10+ new features, including 7-day rolling averages and lag variables, to capture temporal dependencies in sensor data. Trained, iterated, and compared multiple Scikit-learn models (Random Forest, GBR) to predict Phycocyanin (HAB) concentrations.",
-        "Deployed GridSearchCV for systematic hyperparameter tuning, improving the final model's predictive accuracy (RMSE) by 18% over baseline. Performed data mining by extracting feature importances to identify dissolved oxygen and temperature as the key drivers of algae blooms."
+        "A machine learning pipeline designed to reliably predict Harmful Algal Bloom (HAB) concentrations by analyzing and mapping five years of complex, disparate environmental time-series sensor data.",
+        "Features a highly engineered Pandas data pipeline that cleans data, handles missing values via temporal interpolation, and engineers complex lagging variables to capture crucial aquatic temporal dependencies.",
+        "Leverages systematically tuned regression models—including Random Forests and Gradient Boosting—to effectively establish dissolved oxygen and temperature profiles as key predictive drivers of phycocyanin concentrations."
       ]
     },
     {
@@ -150,14 +162,13 @@ const portfolioData = {
       title: "Robotics Digital Twin Application",
       date: "Nov 2025",
       category: "Robotics & Simulation",
-      tags: ["NVIDIA Omniverse", "Streamlit", "FastAPI", "ROS 2", "Oracle DB"],
-      link: "",
-      image: `${import.meta.env.BASE_URL}RoboticsDigitwin.png`,
+      tags: ["NVIDIA Isaac Sim", "Isaac Lab", "FastAPI", "ROS 2", "Oracle DB", "Streamlit", "WebSocket"],
+      link: "https://github.com/CURT1S03/robotics-digital-twin",
+      image: `${import.meta.env.BASE_URL}package-lock.png`,
       bullets: [
-        "Architected a full-stack digital twin framework using NVIDIA Omniverse to validate robotic planning algorithms.",
-        "Developed RESTful API endpoints with FastAPI that interfaced with a core ROS 2 pub/sub system.",
-        "Engineered a data pipeline where ROS 2 nodes published real-time performance metrics persisted to an Oracle Database.",
-        "Created endpoints to enable Streamlit dashboards to visualize historical experiment data."
+        "A digital twin framework for evaluating quadruped navigation algorithms in NVIDIA Isaac Sim before deploying to physical hardware, enabling rapid and reproducible iteration on planning strategies without risking hardware.",
+        "Configures Waypoint and RRT path planners for a Unitree Go2 robot and runs multi-trial experiments through a FastAPI backend with real-time WebSocket streaming of simulation telemetry.",
+        "Persists telemetry and performance metrics to an Oracle-schema database via a ROS 2 asyncio pub/sub pipeline, and visualizes cross-planner comparisons through interactive Streamlit dashboards powered by Plotly."
       ]
     },
     {
@@ -169,9 +180,9 @@ const portfolioData = {
       link: "https://github.com/CURT1S03/Ascensio",
       video: "https://www.youtube.com/embed/-l6dTUsGWe0",
       bullets: [
-        "Designed and implemented core gameplay mechanics—including a coin collection system, interactive environmental elements (bouncy leaves, elevator clouds), and a safe-point respawn system—by writing modular C# scripts in Unity.",
-        "Optimized player navigation and spatial awareness by developing a responsive third-person camera anchor system and integrating foundational character movement controls.",
-        "Spearheaded a complete redesign of the main playable level by seamlessly integrating complex 3D assets (villages, beanstalks, bridges) and managing large binary files via Git LFS to maintain optimal project performance."
+        "An engaging 3D platformer game developed in Unity featuring complex navigational challenges, integrated environmental puzzles, and a diverse collection-based gameplay loop.",
+        "Features polished C# control architectures with responsive third-person camera anchoring, seamless respawn networks, and interactive physics elements like bouncy foliage and elevating clouds.",
+        "Showcases intricate 3D level design involving expansive, vertical environments woven together with complex assets, carefully managed via Git LFS to maintain optimal asset performance."
       ]
     },
     {
@@ -183,26 +194,9 @@ const portfolioData = {
       link: "https://github.com/CURT1S03/MazeSolver",
       image: `${import.meta.env.BASE_URL}Maze.png`,
       bullets: [
-        "Built an automated maze-solving application in Python using OpenCV to detect and visualize solution paths through perfect maze images.",
-        "Implemented a multi-stage image processing pipeline leveraging grayscale conversion, binary thresholding, contour detection, and morphological transformations (dilation/erosion).",
-        "Applied mathematical morphology techniques to extract maze solution paths without traditional graph-based pathfinding algorithms.",
-        "Engineered bitwise masking and channel manipulation to overlay computed solution paths onto original maze images.",
-        "Designed the pipeline to output intermediate processing steps for visual debugging and analysis of each transformation stage.",
-        "Tested across multiple maze complexities (5×5, 20×20, 50×50) to validate solver accuracy and robustness."
-      ]
-    },
-    {
-      id: "proj-oss",
-      title: "Open Source Contributor | Career-Ops",
-      date: "Apr 2026",
-      category: "Open Source",
-      tags: ["Open Source", "LaTeX", "Node.js", "pdflatex", "36k+ Stars in 10 Days"],
-      link: "https://github.com/santifer/career-ops",
-      images: [ `${import.meta.env.BASE_URL}careerops_firstPR.png`],
-      bullets: [
-        "Contributed to Career-Ops, a rapidly trending open-source project that amassed over 36,000 GitHub stars within 10 days of launch, delivering a major feature enhancement merged into the main branch.",
-        "Engineered a LaTeX and Overleaf CV export feature, integrating pdflatex compilation directly into the application's core architecture.",
-        "Resolved a major community request (Issue #47) by delivering the end-to-end PDF generation pipeline, successfully merged into the main branch (PR #362)."
+        "An automated computer vision utility written in Python that instantly maps and visually overlays solution paths through standard perfect-maze images.",
+        "Executes a multi-stage OpenCV processing pipeline applying advanced techniques such as binary thresholding, morphological dilations, and precise contour detection.",
+        "Solves complex structures entirely through spatial mathematics and channel manipulations, successfully isolating paths without relying on traditional algorithmic graph traversal or recursive pathfinding."
       ]
     }
   ]

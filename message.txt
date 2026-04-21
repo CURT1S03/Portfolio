@@ -1,0 +1,211 @@
+import { useState } from 'react';
+import LoadingScreen from './components/LoadingScreen';
+import Navbar from './components/Navbar';
+import HeroSection from './components/HeroSection';
+import SelectedWorks from './components/SelectedWorks';
+import ExperienceSection from './components/ExperienceSection';
+import DeepThinkSection from './components/DeepThinkSection';
+import SkillsSection from './components/SkillsSection';
+
+import FooterSection from './components/FooterSection';
+
+/* ============================================
+   Portfolio Data
+   ============================================ */
+
+const portfolioData = {
+  base: import.meta.env.BASE_URL,
+  personal: {
+    name: "Curtis Cao",
+    title: "Computer Science Student & Software Engineer",
+    phone: "(401) 430-0384",
+    email: "curtiswencao@gmail.com",
+    location: "Atlanta, GA",
+    linkedin: "https://linkedin.com/in/curtiscao/",
+    github: "https://github.com/Cwcao",
+    citizenship: "U.S. Citizen",
+    about: "I am a Computer Science student at Georgia Tech specializing in machine learning, full-stack architecture, and robotics software. I have a proven track record of engineering end-to-end systems, from deploying cloud-based NLP pipelines and LLM chatbots to building edge-deployed computer vision models for autonomous systems."
+  },
+  skills: {
+    languages: ["C", "C++", "Java", "JavaScript", "Python", "HTML", "CSS"],
+    technologies: ["Power BI", "Excel", "SQL Developer", "GitHub", "Docker", "Kubernetes", "Oracle Database", "Azure", "FAISS", "LangChain", "Streamlit", "REST APIs", "FastAPI", "CI/CD", "InfluxDB", "PyTorch"]
+  },
+  experience: [
+    {
+      id: "exp-1",
+      role: "R&D Intern",
+      company: "LSPediA",
+      location: "Bloomfield Hills, MI",
+      date: "May 2025 - Aug 2025",
+      type: "work",
+      bullets: [
+        "Architected and deployed a production-ready RAG chatbot using LangChain, FAISS, and Azure OpenAI, enabling non-technical users to query a 5GB+ FDA compliance dataset, abstracting complex SQL joins and reducing retrieval times from hours to seconds.",
+        "Engineered an NLP data pipeline using Python and OpenAI to perform entity extraction and normalization on 100,000+ unstructured recall records.",
+        "Engineered and containerized over 5 distinct Python microservices, each exposing a RESTful API to automate data integration from HubSpot, Freshdesk, and QuickBooks.",
+        "Orchestrated 10+ automated ETL workflows using Kubernetes CronJobs, leveraging Datadog monitoring for 99.9% uptime for business-critical data synchronization.",
+        "Developed and maintained a robust CI/CD pipeline using GitHub Actions for a containerized legacy process."
+      ]
+    },
+    {
+      id: "exp-2",
+      role: "Data Subteam Member",
+      company: "Georgia Tech Solar Racing",
+      location: "Atlanta, GA",
+      date: "2025 - Present",
+      type: "work",
+      images: [`${import.meta.env.BASE_URL}solar1.png`, `${import.meta.env.BASE_URL}unnamed.png`],
+      bullets: [
+        "Facilitated data-driven decision-making for the team by analyzing historical vehicle data, monitoring live information, and generating predictive insights.",
+        "Managed and maintained the central schema definition for all Controller Area Network (CAN) messages, ensuring accurate data transmission across various vehicle boards.",
+        "Utilized a centralized Telemetry Server to monitor vehicle metrics outside the car, validating critical vehicle systems and storing telemetry for future reference and race-day strategy.",
+        "Designed and implemented real-time data monitoring dashboards using Grafana, and contributed to the development of a custom, first-generation \"Realtime Visualizer.\"",
+      ]
+    }
+  ],
+  education: [
+    {
+      id: "edu-1",
+      degree: "Master of Science in Computer Science",
+      school: "Georgia Institute of Technology",
+      location: "Atlanta, GA",
+      date: "Fall 2026 - Fall 2027",
+      type: "education",
+      bullets: []
+    },
+    {
+      id: "edu-2",
+      degree: "Bachelor of Science in Computer Science",
+      school: "Georgia Institute of Technology",
+      location: "Atlanta, GA",
+      date: "Fall 2023 - Spring 2026",
+      type: "education",
+      bullets: [
+        "Coursework: Data Structures & Algorithms, Object-Oriented Design, Machine Learning, Computer Vision, Probability & Statistics, Operating Systems"
+      ]
+    }
+  ],
+  projects: [
+    {
+      id: "proj-0a",
+      title: "Full-Stack RL Training Environment for Quadrupeds",
+      date: "Apr 2026",
+      category: ["Robotics & Simulation", "Machine Learning"],
+      tags: ["React", "FastAPI", "NVIDIA Isaac Sim", "Reinforcement Learning", "PPO"],
+      link: "https://github.com/CURT1S03/quadruped-drl-platform",
+      video: "https://www.youtube.com/embed/Xhlh6Zme6dA",
+      bullets: [
+        "A comprehensive web platform designed to streamline and visualize the training of quadruped robots using GPU-parallelized deep reinforcement learning in NVIDIA Isaac Sim.",
+        "Features a custom React and FastAPI dashboard that allows users to seamlessly upload URDF models and custom terrains, configure complex training parameters, and launch Isaac Sim environments dynamically.",
+        "Includes real-time WebSocket integrations to stream training metrics and dynamically monitor Proximal Policy Optimization (PPO) algorithms as policies learn gait stability and obstacle traversal across thousands of parallel environments."
+      ]
+    },
+    {
+      id: "proj-0",
+      title: "EquipLog",
+      date: "Mar 2026",
+      category: "Full-Stack Apps",
+      tags: ["Mobile-First", "QR Code", "UX Design", "Customer Discovery"],
+      link: "https://portfolio-21md.vercel.app/",
+      preview: "https://portfolio-21md.vercel.app/",
+      bullets: [
+        "A mobile-first workflow solution designed directly from customer discovery interviews to address the critical friction points shop floor mechanics face during equipment maintenance.",
+        "The application entirely eliminates manual data entry by incorporating large-text search features and integrated QR code scanning for instantaneous equipment record retrieval.",
+        "It drastically accelerates safety risk and fault reporting through a highly accessible, glove-friendly interface, enabling technicians to log issues and attach contextual diagnostic photos in under 30 seconds."
+      ]
+    },
+ 
+    {
+      id: "proj-2",
+      title: "Vision Augmented Race Strategy Engine",
+      date: "2025 – Present",
+      category: "Robotics & Simulation",
+      tags: ["InfluxDB", "NVIDIA Jetson", "YOLOv8", "U-Net", "MiDaS"],
+      link: "",
+      image: `${import.meta.env.BASE_URL}srsim.png`,
+      bullets: [
+        "An advanced, edge-deployed race strategy platform built for the Georgia Tech Solar Racing team, fusing real-time telemetry, irradiance forecasting, and onboard computer vision to optimize the vehicle's 14 kWh energy budget.",
+        "Runs a sophisticated CV pipeline on an NVIDIA Jetson Orin Nano, executing U-Net sky segmentation alongside YOLOv8 object detection and MiDaS depth estimation, streaming structured state data over cellular backhaul.",
+        "Continuously dynamically adjusts physics-based speed models by using cloud-cover to derate array power, automatically capping speed sweeps based on detected lead vehicles, and adapting rolling resistance calculations to current surface classifications."
+      ]
+    },
+       {
+      id: "proj-0b",
+      title: "Algae Bloom (HAB) Predictive Model",
+      date: "Dec 2025",
+      category: "Machine Learning",
+      tags: ["Python", "Pandas", "Scikit-learn"],
+      link: "https://github.com/CURT1S03/Algae-ML",
+      images: [`${import.meta.env.BASE_URL}ml1.png`, `${import.meta.env.BASE_URL}ml2.png`],
+      bullets: [
+        "A machine learning pipeline designed to reliably predict Harmful Algal Bloom (HAB) concentrations by analyzing and mapping five years of complex, disparate environmental time-series sensor data.",
+        "Features a highly engineered Pandas data pipeline that cleans data, handles missing values via temporal interpolation, and engineers complex lagging variables to capture crucial aquatic temporal dependencies.",
+        "Leverages systematically tuned regression models—including Random Forests and Gradient Boosting—to effectively establish dissolved oxygen and temperature profiles as key predictive drivers of phycocyanin concentrations."
+      ]
+    },
+    {
+      id: "proj-1",
+      title: "Robotics Digital Twin Application",
+      date: "Nov 2025",
+      category: "Robotics & Simulation",
+      tags: ["NVIDIA Isaac Sim", "Isaac Lab", "FastAPI", "ROS 2", "Oracle DB", "Streamlit", "WebSocket"],
+      link: "https://github.com/CURT1S03/robotics-digital-twin",
+      image: `${import.meta.env.BASE_URL}download1.png`,
+      bullets: [
+        "A digital twin framework for evaluating quadruped navigation algorithms in NVIDIA Isaac Sim before deploying to physical hardware, enabling rapid and reproducible iteration on planning strategies without risking hardware.",
+        "Configures Waypoint and RRT path planners for a Unitree Go2 robot and runs multi-trial experiments through a FastAPI backend with real-time WebSocket streaming of simulation telemetry.",
+        "Persists telemetry and performance metrics to an Oracle-schema database via a ROS 2 asyncio pub/sub pipeline, and visualizes cross-planner comparisons through interactive Streamlit dashboards powered by Plotly."
+      ]
+    },
+    {
+      id: "proj-ascensio",
+      title: "Ascensio (3D Platformer Game)",
+      date: "Feb 2025",
+      category: "Fun",
+      tags: ["Unity", "C#", "Game Design", "Git LFS", "3D"],
+      link: "https://github.com/CURT1S03/Ascensio",
+      video: "https://www.youtube.com/embed/-l6dTUsGWe0",
+      bullets: [
+        "An engaging 3D platformer game developed in Unity featuring complex navigational challenges, integrated environmental puzzles, and a diverse collection-based gameplay loop.",
+        "Features polished C# control architectures with responsive third-person camera anchoring, seamless respawn networks, and interactive physics elements like bouncy foliage and elevating clouds.",
+        "Showcases intricate 3D level design involving expansive, vertical environments woven together with complex assets, carefully managed via Git LFS to maintain optimal asset performance."
+      ]
+    },
+    {
+      id: "proj-4",
+      title: "Maze Solver With Image Detection",
+      date: "Nov 2023",
+      category: "Fun",
+      tags: ["Python", "OpenCV"],
+      link: "https://github.com/CURT1S03/MazeSolver",
+      image: `${import.meta.env.BASE_URL}Maze.png`,
+      bullets: [
+        "An automated computer vision utility written in Python that instantly maps and visually overlays solution paths through standard perfect-maze images.",
+        "Executes a multi-stage OpenCV processing pipeline applying advanced techniques such as binary thresholding, morphological dilations, and precise contour detection.",
+        "Solves complex structures entirely through spatial mathematics and channel manipulations, successfully isolating paths without relying on traditional algorithmic graph traversal or recursive pathfinding."
+      ]
+    }
+  ]
+};
+
+/* ============================================
+   Main App
+   ============================================ */
+
+export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [showProjects, setShowProjects] = useState(false);
+  const d = portfolioData;
+
+  return (
+    <div className="bg-bg text-foreground font-body">
+      {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
+      <Navbar email={d.personal.email} />
+      <HeroSection data={d.personal} />
+      <ExperienceSection experience={d.experience} education={d.education} />
+      <DeepThinkSection onRevealProjects={() => setShowProjects(true)} />
+      {showProjects && <SelectedWorks projects={d.projects} />}
+      <SkillsSection skills={d.skills} />
+      <FooterSection data={d.personal} />
+    </div>
+  );
+}
