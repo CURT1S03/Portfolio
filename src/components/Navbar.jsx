@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 
 const navLinks = [
   { label: "Home", href: "#home" },
-  { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
+  { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
 ];
 
-export default function Navbar({ email }) {
+export default function Navbar({ email, onProjectsClick }) {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("Home");
 
@@ -41,7 +41,13 @@ export default function Navbar({ email }) {
             <a
               key={link.label}
               href={link.href}
-              onClick={() => setActive(link.label)}
+              onClick={(event) => {
+                setActive(link.label);
+                if (link.label === 'Projects') {
+                  event.preventDefault();
+                  onProjectsClick?.();
+                }
+              }}
               className={`text-xs sm:text-sm rounded-full px-3 sm:px-4 py-1.5 sm:py-2 transition-colors ${
                 active === link.label
                   ? 'text-foreground bg-stroke/50'

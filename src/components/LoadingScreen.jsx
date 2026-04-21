@@ -1,15 +1,35 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
-const words = ["Engineer", "Build", "Deploy"];
+const terminalLines = [
+  {
+    command: 'whoami',
+    output: 'Curtis Cao',
+    threshold: 14,
+  },
+  {
+    command: 'cat about.md',
+    output: 'Building AI systems, robotics software, and full-stack products.',
+    threshold: 34,
+  },
+  {
+    command: 'echo "1 person + AI = 1 team"',
+    output: '1 person + AI = 1 team',
+    threshold: 58,
+  },
+  {
+    command: 'open portfolio.app',
+    output: 'Launching portfolio experience...',
+    threshold: 84,
+  },
+];
 
 export default function LoadingScreen({ onComplete }) {
   const [count, setCount] = useState(0);
-  const [wordIndex, setWordIndex] = useState(0);
   const startRef = useRef(null);
 
   useEffect(() => {
-    const duration = 2700;
+    const duration = 3000;
     let rafId;
 
     const animate = (timestamp) => {
@@ -21,7 +41,7 @@ export default function LoadingScreen({ onComplete }) {
       if (progress < 1) {
         rafId = requestAnimationFrame(animate);
       } else {
-        setTimeout(() => onComplete(), 400);
+        setTimeout(() => onComplete(), 220);
       }
     };
 
@@ -29,54 +49,63 @@ export default function LoadingScreen({ onComplete }) {
     return () => cancelAnimationFrame(rafId);
   }, [onComplete]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setWordIndex((prev) => (prev + 1) % words.length);
-    }, 900);
-    return () => clearInterval(interval);
-  }, []);
+  const visibleLines = terminalLines.filter((line) => count >= line.threshold);
+  const quickProgress = Math.min(100, Math.floor(100 * (1 - Math.pow(1 - count / 100, 2.4))));
 
   return (
-    <div className="fixed inset-0 z-[9999] bg-bg flex flex-col justify-between p-8 md:p-12">
+    <div className="fixed inset-0 z-[9999] terminal-loader-overlay flex items-center justify-center px-4">
       <motion.div
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6 }}
+        initial={{ opacity: 0, y: 12, scale: 0.985 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.42, ease: 'easeOut' }}
+        className="terminal-loader-shell"
       >
-        <span className="text-xs text-muted uppercase tracking-[0.3em]">Portfolio</span>
+        <div className="terminal-loader-titlebar">
+          <div className="terminal-loader-dots" aria-hidden="true">
+            <span className="terminal-dot terminal-dot-red" />
+            <span className="terminal-dot terminal-dot-yellow" />
+            <span className="terminal-dot terminal-dot-green" />
+          </div>
+          <span className="terminal-loader-title">curtis@portfolio - zsh</span>
+          <span className="terminal-loader-percent">{String(count).padStart(3, '0')}%</span>
+        </div>
+
+        <div className="terminal-loader-body">
+          {visibleLines.map((line, idx) => (
+            <div key={line.command} className="terminal-line" style={{ animationDelay: `${idx * 0.13}s` }}>
+              <div className="terminal-command-row">
+                <span className="terminal-prompt">$</span>
+                <span className="terminal-command-text">{line.command}</span>
+                {idx === visibleLines.length - 1 && count < 100 ? <span className="terminal-cursor" /> : null}
+              </div>
+              <div className="terminal-output-row">{line.output}</div>
+            </div>
+          ))}
+
+          {count < 100 ? (
+            <div className="terminal-command-row terminal-idle-row">
+              <span className="terminal-prompt">$</span>
+              <span className="terminal-cursor" />
+            </div>
+          ) : null}
+
+          <div className="terminal-progress-wrap">
+            <div className="terminal-progress-track">
+              <div className="terminal-progress-fill" style={{ transform: `scaleX(${count / 100})` }} />
+            </div>
+          </div>
+        </div>
       </motion.div>
 
-      <div className="flex-1 flex items-center justify-center">
-        <AnimatePresence mode="wait">
-          <motion.span
-            key={wordIndex}
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -20, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-display italic text-foreground/80"
-          >
-            {words[wordIndex]}
-          </motion.span>
-        </AnimatePresence>
-      </div>
-
-      <div className="flex justify-end">
-        <span className="text-6xl md:text-8xl lg:text-9xl font-display text-foreground tabular-nums">
-          {String(count).padStart(3, "0")}
-        </span>
-      </div>
-
-      <div className="h-[3px] bg-stroke/50 mt-6">
-        <div
-          className="h-full accent-gradient"
-          style={{
-            transform: `scaleX(${count / 100})`,
-            transformOrigin: 'left',
-            boxShadow: '0 0 8px rgba(137, 170, 204, 0.35)',
-            transition: 'transform 0.1s',
-          }}
-        />
+      <div className="terminal-bottom-quick" aria-hidden="true">
+        <div className="terminal-bottom-label-row">
+          <span className="terminal-prompt">$</span>
+          <span className="terminal-bottom-label">boot sequence</span>
+          <span className="terminal-bottom-percent">{String(quickProgress).padStart(3, '0')}%</span>
+        </div>
+        <div className="terminal-bottom-track">
+          <div className="terminal-bottom-fill" style={{ transform: `scaleX(${quickProgress / 100})` }} />
+        </div>
       </div>
     </div>
   );

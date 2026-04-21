@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import LoadingScreen from './components/LoadingScreen';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
@@ -214,13 +215,22 @@ export default function App() {
   return (
     <div className="bg-bg text-foreground font-body">
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
-      <Navbar email={d.personal.email} />
-      <HeroSection data={d.personal} />
-      <ExperienceSection experience={d.experience} education={d.education} />
-      <DeepThinkSection onRevealProjects={() => setShowProjects(true)} />
-      {showProjects && <SelectedWorks projects={d.projects} />}
-      <SkillsSection skills={d.skills} />
-      <FooterSection data={d.personal} />
+
+      {!isLoading && (
+        <motion.main
+          initial={{ opacity: 0, y: 22, scale: 0.995 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.55, ease: 'easeOut' }}
+        >
+          <Navbar email={d.personal.email} />
+          <HeroSection data={d.personal} />
+          <ExperienceSection experience={d.experience} education={d.education} />
+          <DeepThinkSection onRevealProjects={() => setShowProjects(true)} />
+          {showProjects && <SelectedWorks projects={d.projects} />}
+          <SkillsSection skills={d.skills} />
+          <FooterSection data={d.personal} />
+        </motion.main>
+      )}
     </div>
   );
 }
