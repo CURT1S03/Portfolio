@@ -128,7 +128,20 @@ const portfolioData = {
         "It drastically accelerates safety risk and fault reporting through a highly accessible, glove-friendly interface, enabling technicians to log issues and attach contextual diagnostic photos in under 30 seconds."
       ]
     },
- 
+    {
+      id: "proj-sentiment-robustness",
+      title: "Robustness Analysis of Sentiment Classifiers",
+      date: "Jan 2026",
+      category: "Machine Learning",
+      tags: ["Python", "HuggingFace Transformers", "scikit-learn", "GloVe", "NLP", "Robustness Evaluation", "Pandas", "Matplotlib"],
+      link: "https://github.com/CURT1S03/NLPProject",
+      image: `${import.meta.env.BASE_URL}per_class_accuracy.png`,
+      bullets: [
+        "Designed a severity-controlled text perturbation framework covering spelling errors, word deletion, word order shuffling, and punctuation removal — applied individually and in combination across three severity levels — to investigate how real-world noise affects sentiment classification.",
+        "Evaluated Logistic Regression (TF-IDF), Neural Bag-of-Words (GloVe-100d), and DistilBERT on SST-2 (in-distribution), IMDB, and Yelp Polarity (OOD), reporting accuracy, F1, per-class accuracy, prediction flip rate, and model confidence across all conditions.",
+        "Key finding: DistilBERT leads clean-text performance by +11pp over LR on SST-2 but degrades fastest under noise, falling below LR's accuracy at high-severity perturbations — a reversal attributed to subword tokenizer fragility to character-level corruption, establishing TF-IDF bag-of-words as the most robust approach for noisy deployment environments."
+      ]
+    },
     {
       id: "proj-2",
       title: "Vision Augmented Race Strategy Engine",
