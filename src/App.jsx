@@ -33,8 +33,22 @@ const portfolioData = {
   },
   experience: [
     {
+      id: "exp-2",
+      role: "SDE Intern",
+      company: "CMS Energy",
+      location: "Jackson, MI",
+      date: "May 2026 - Aug 2026",
+      type: "work",
+      bullets: [
+        "Designed a custom API integration layer for an AI incident management agent to handle unique data requirements unsupported by standard connectors, securely routing REST payloads between ServiceNow and Moveworks to save an estimated 250 hours in manual triage.",
+        "Engineered secure data pipelines leveraging OAuth 2.0 and HTTPS to extract CMDB records and incident metrics from ServiceNow ITSM, synchronizing state vectors with Moveworks' internal ITSM and Conversation Services to correlate alerts and reduce false pages.",
+        "Deployed conversational workflows within the Microsoft Teams M365 environment via AzureBot, integrating Active Directory via LDAPS for secure user identity resolution and enabling natural language execution of custom runbooks.",
+        "Architected a semantic search fallback mechanism by connecting ServiceNow Knowledge Base endpoints directly to the Moveworks Answers Service, establishing an intelligent cache to automatically retrieve historical ITSM resolutions and prevent recurring outages."
+      ]
+    },
+    {
       id: "exp-1",
-      role: "R&D Intern",
+      role: "SDE Intern",
       company: "LSPediA",
       location: "Bloomfield Hills, MI",
       date: "May 2025 - Aug 2025",
@@ -48,7 +62,7 @@ const portfolioData = {
       ]
     },
     {
-      id: "exp-2",
+      id: "exp-3",
       role: "Data Subteam Member",
       company: "Georgia Tech Solar Racing",
       location: "Atlanta, GA",
@@ -69,7 +83,7 @@ const portfolioData = {
       degree: "Master of Science in Computer Science",
       school: "Georgia Institute of Technology",
       location: "Atlanta, GA",
-      date: "Fall 2026 - Fall 2027",
+      date: "Fall 2026 - (Expected) Fall 2027",
       type: "education",
       bullets: []
     },

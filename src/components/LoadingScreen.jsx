@@ -9,12 +9,12 @@ const terminalLines = [
   },
   {
     command: 'cat about.md',
-    output: 'Building AI systems, robotics software, and full-stack products.',
+    output: 'Backend systems, machine learning, and robotics software.',
     threshold: 34,
   },
   {
-    command: 'echo "1 person + AI = 1 team"',
-    output: '1 person + AI = 1 team',
+    command: 'ls experience/',
+    output: 'Georgia Tech Solar Racing | CMS Energy | LSPediA  ',
     threshold: 58,
   },
   {

@@ -1,12 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import Hls from 'hls.js';
 
-const roles = ["Backend Engineer", "ML Developer", "Data Engineer", "Problem Solver"];
-
 export default function HeroSection({ data }) {
   const videoRef = useRef(null);
-  const [roleIndex, setRoleIndex] = useState(0);
 
   // HLS video setup
   useEffect(() => {
@@ -21,14 +18,6 @@ export default function HeroSection({ data }) {
     } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
       video.src = src;
     }
-  }, []);
-
-  // Role cycling
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setRoleIndex((prev) => (prev + 1) % roles.length);
-    }, 2000);
-    return () => clearInterval(interval);
   }, []);
 
   // GSAP entrance animation
@@ -74,17 +63,6 @@ export default function HeroSection({ data }) {
         >
           {data.name}
         </h1>
-
-        <p className="blur-in text-base md:text-lg text-muted mb-4" style={{ opacity: 0 }}>
-          A{' '}
-          <span
-            key={roleIndex}
-            className="font-display italic text-foreground animate-role-fade-in inline-block"
-          >
-            {roles[roleIndex]}
-          </span>{' '}
-          based in {data.location}.
-        </p>
 
         <p className="blur-in text-sm md:text-base text-muted max-w-md mx-auto mb-12" style={{ opacity: 0 }}>
           {data.about}
