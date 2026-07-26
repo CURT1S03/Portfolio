@@ -3,18 +3,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const thinkingSteps = [
   "Scanning professional experience...",
-  "Cross-referencing: LSPediA • Georgia Tech Solar Racing...",
-  "Analyzing backend systems → RAG chatbot, microservices, ETL pipelines...",
-  "Evaluating ML expertise → PyTorch, reinforcement learning, computer vision...",
-  "Assessing robotics & simulation → NVIDIA Isaac Sim, Jetson, Omniverse...",
-  "Assessing full-stack capabilities → FastAPI, React, Docker, Kubernetes...",
+  "Evaluating full-stack software architecture...",
+  "Analyzing machine learning and AI capabilities...",
+  "Assessing robotics and simulation background...",
+  "Reviewing end-to-end system deployment...",
   "Synthesizing key differentiators...",
   "Generating results ✦",
 ];
 
 const finalResult =
-  "Curtis is a strong candidate because he bridges machine learning, robotics software, and full-stack architecture with real production experience — from training quadruped locomotion policies with GPU-parallelized reinforcement learning, to deploying edge computer vision pipelines on NVIDIA Jetson for autonomous solar racing strategy, to building RAG chatbots over 5GB+ datasets and containerized microservices at scale. His work at LSPediA and Georgia Tech Solar Racing demonstrates he can ship end-to-end systems that solve real problems.";
-
+  "Curtis stands out for his ability to translate advanced technical concepts into working solutions. With a strong background in software development, AI, and systems architecture, he has a proven track record of delivering reliable, end-to-end applications that tackle tangible challenges across both his academic and professional career.";
 export default function DeepThinkSection({ onRevealProjects }) {
   const [phase, setPhase] = useState('idle'); // idle | thinking | done
   const [visibleSteps, setVisibleSteps] = useState(0);
@@ -99,7 +97,7 @@ export default function DeepThinkSection({ onRevealProjects }) {
           className="relative rounded-3xl border border-stroke bg-surface/50 p-6 md:p-8 max-w-3xl"
         >
           {/* Question */}
-          <p className="text-foreground/90 text-lg md:text-xl font-display italic mb-6">
+          <p className="text-foreground text-2xl md:text-3xl lg:text-4xl font-body font-medium leading-tight mb-6">
             &ldquo;Why is Curtis a good candidate?&rdquo;
           </p>
 
