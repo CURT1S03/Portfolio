@@ -33,6 +33,17 @@ const portfolioData = {
   },
   experience: [
     {
+      id: "exp-0",
+      role: "SDE I Intern",
+      company: "Amazon",
+      location: "Seattle, WA",
+      date: "Sep 2026 - Dec 2026",
+      type: "work",
+      bullets: [
+        "Incoming Software Development Engineer Intern for the AMX Science team."
+      ]
+    },
+    {
       id: "exp-2",
       role: "SDE Intern",
       company: "CMS Energy",

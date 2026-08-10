@@ -14,7 +14,7 @@ const terminalLines = [
   },
   {
     command: 'ls experience/',
-    output: 'Georgia Tech Solar Racing | CMS Energy | LSPediA  ',
+    output: 'Amazon | CMS Energy | LSPediA | Georgia Tech Solar Racing',
     threshold: 58,
   },
   {
